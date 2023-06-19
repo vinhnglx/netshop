@@ -3,8 +3,8 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack/lib/type
 import {Button, Text} from '@rneui/themed';
 import React from 'react';
 import {Image, ImageBackground, StyleSheet, View} from 'react-native';
-import {RootStackParamList} from '../../App';
-import {useSafeAreaPadding} from '../hooks/useSafeAreaPadding';
+import {AuthStackParamList} from '../../../App';
+import {useSafeAreaPadding} from '../../hooks/useSafeAreaPadding';
 
 const styles = StyleSheet.create({
   container: {
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
 const WelcomeScreen = () => {
   const insets = useSafeAreaPadding();
   const navigation =
-    useNavigation<NativeStackNavigationProp<RootStackParamList, 'SignIn'>>();
+    useNavigation<NativeStackNavigationProp<AuthStackParamList, 'SignIn'>>();
 
   return (
     <View style={[insets, styles.container]}>

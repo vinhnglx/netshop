@@ -2,10 +2,10 @@ import {useNavigation} from '@react-navigation/native';
 import {Button, Input, Text} from '@rneui/themed';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import {BackIcon} from '../components/BackIcon';
-import {GoogleIcon} from '../components/GoogleIcon';
-import {useSafeAreaPadding} from '../hooks/useSafeAreaPadding';
-import {RootStackParamList} from '../../App';
+import {BackIcon} from '../../components/BackIcon';
+import {GoogleIcon} from '../../components/GoogleIcon';
+import {useSafeAreaPadding} from '../../hooks/useSafeAreaPadding';
+import {AuthStackParamList} from '../../../App';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 const styles = StyleSheet.create({
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
 const SignInScreen = () => {
   const insets = useSafeAreaPadding();
   const navigation =
-    useNavigation<NativeStackNavigationProp<RootStackParamList, 'SignUp'>>();
+    useNavigation<NativeStackNavigationProp<AuthStackParamList, 'SignUp'>>();
 
   return (
     <View style={[insets, styles.container]}>

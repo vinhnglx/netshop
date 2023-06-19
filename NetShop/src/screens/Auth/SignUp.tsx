@@ -8,8 +8,8 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import {BackIcon} from '../components/BackIcon';
-import {useSafeAreaPadding} from '../hooks/useSafeAreaPadding';
+import {BackIcon} from '../../components/BackIcon';
+import {useSafeAreaPadding} from '../../hooks/useSafeAreaPadding';
 
 const styles = StyleSheet.create({
   container: {
