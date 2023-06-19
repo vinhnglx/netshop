@@ -73,7 +73,7 @@ const SignInScreen = () => {
       </View>
 
       <View style={styles.flex1}>
-        <Input label="UserName" placeholder="johndoe" />
+        <Input label="User Name" placeholder="johndoe" />
         <Input
           label="Password"
           placeholder="**********"
