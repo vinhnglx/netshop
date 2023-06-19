@@ -3,16 +3,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import WelcomeScreen from './src/screens/Welcome';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import SignInScreen from './src/screens/SignIn';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,6 +18,7 @@ const App = () => {
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown: false}}>
           <Stack.Screen name="Welcome" component={WelcomeScreen} />
+          <Stack.Screen name="SignIn" component={SignInScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>
