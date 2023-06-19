@@ -5,6 +5,8 @@ import {StyleSheet, View} from 'react-native';
 import {BackIcon} from '../components/BackIcon';
 import {GoogleIcon} from '../components/GoogleIcon';
 import {useSafeAreaPadding} from '../hooks/useSafeAreaPadding';
+import {RootStackParamList} from '../../App';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 const styles = StyleSheet.create({
   container: {
@@ -51,7 +53,8 @@ const styles = StyleSheet.create({
 
 const SignInScreen = () => {
   const insets = useSafeAreaPadding();
-  const navigation = useNavigation();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList, 'SignUp'>>();
 
   return (
     <View style={[insets, styles.container]}>
@@ -90,7 +93,10 @@ const SignInScreen = () => {
 
       <View style={[styles.flex1, styles.center]}>
         <Text>Don't have an account?</Text>
-        <Button size="sm" type="clear">
+        <Button
+          size="sm"
+          type="clear"
+          onPress={() => navigation.navigate('SignUp')}>
           Sign Up for free
         </Button>
       </View>
