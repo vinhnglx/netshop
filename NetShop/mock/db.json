@@ -1,0 +1,86 @@
+{
+  "users": [],
+  "products": [
+    {
+      "name": "Product 1",
+      "description": "This is a short description for Product 1.",
+      "price": 19.99,
+      "imageURL": "https://picsum.photos/400",
+      "quantity": 10,
+      "status": "available",
+      "SKU": "SKU001"
+    },
+    {
+      "name": "Product 2",
+      "description": "This is a slightly longer description for Product 2. It provides more details about the product and its features.",
+      "price": 29.99,
+      "imageURL": "https://picsum.photos/400",
+      "quantity": 5,
+      "status": "available",
+      "SKU": "SKU002"
+    },
+    {
+      "name": "Product 3",
+      "description": "This is a significantly longer description for Product 3. It contains additional information and specifications to help customers make informed decisions about the product.",
+      "price": 39.99,
+      "imageURL": "https://picsum.photos/400",
+      "quantity": 2,
+      "status": "available",
+      "SKU": "SKU003"
+    },
+    {
+      "name": "Product 4",
+      "description": "This is a very short description for Product 4.",
+      "price": 49.99,
+      "imageURL": "https://picsum.photos/400",
+      "quantity": 0,
+      "status": "sold out",
+      "SKU": "SKU004"
+    },
+    {
+      "name": "Product 5",
+      "description": "This is a medium-length description for Product 5. It provides some key features and benefits of the product.",
+      "price": 59.99,
+      "imageURL": "https://picsum.photos/400",
+      "quantity": 8,
+      "status": "available",
+      "SKU": "SKU005"
+    },
+    {
+      "name": "Product 6",
+      "description": "This is a long description for Product 6. It includes detailed specifications and additional information about the product's functionality.",
+      "price": 79.99,
+      "imageURL": "https://picsum.photos/400",
+      "quantity": 3,
+      "status": "available",
+      "SKU": "SKU006"
+    },
+    {
+      "name": "Product 7",
+      "description": "This is a concise description for Product 7.",
+      "price": 99.99,
+      "imageURL": "https://picsum.photos/400",
+      "quantity": 6,
+      "status": "available",
+      "SKU": "SKU007"
+    },
+    {
+      "name": "Product 8",
+      "description": "This is an informative description for Product 8. It includes key features, usage scenarios, and customer reviews.",
+      "price": 129.99,
+      "imageURL": "https://picsum.photos/400",
+      "quantity": 1,
+      "status": "available",
+      "SKU": "SKU008"
+    },
+    {
+      "name": "Product 9",
+      "description": "This is a brief description for Product 9.",
+      "price": 149.99,
+      "imageURL": "https://picsum.photos/400",
+      "quantity": 4,
+      "status": "available",
+      "SKU": "SKU009"
+    }
+  ]
+}
