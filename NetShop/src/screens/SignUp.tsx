@@ -16,6 +16,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#F8F9FA',
   },
+  contentContainer: {
+    paddingBottom: 25,
+  },
   backIconStyle: {
     marginLeft: 10,
     marginTop: 10,
@@ -36,6 +39,9 @@ const styles = StyleSheet.create({
   flex2: {
     flex: 2,
   },
+  form: {
+    marginTop: 20,
+  },
   heading: {
     fontWeight: 'bold',
     marginBottom: 10,
@@ -44,7 +50,8 @@ const styles = StyleSheet.create({
     color: '#707B81',
   },
   spacing: {
-    marginTop: 20,
+    marginTop: 10,
+    marginBottom: 20,
     paddingLeft: 20,
     paddingRight: 20,
     gap: 20,
@@ -66,7 +73,8 @@ const SignUpScreen = () => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <ScrollView
-        contentContainerStyle={[styles.container, insets]}
+        contentContainerStyle={styles.contentContainer}
+        style={[styles.container, insets]}
         keyboardShouldPersistTaps="handled">
         <BackIcon
           style={styles.backIconStyle}
@@ -78,19 +86,24 @@ const SignUpScreen = () => {
             Create Account
           </Text>
           <Text h4 h4Style={styles.subHeading}>
-            Let’s Create Account Together
+            Let's Create Account Together
           </Text>
         </View>
 
-        <View style={styles.flex2}>
-          <Input label="Your Name" placeholder="John Doe" />
-          <Input label="UserName" placeholder="johndoe" />
+        <View style={[styles.flex2, styles.form]}>
+          <Input label="First Name" placeholder="John" />
+          <Input label="Last Name" placeholder="doe" />
+          <Input label="User Name" placeholder="johndoe" />
           <Input
             label="Email Address"
             placeholder="johndoe@example.com"
             inputMode="email"
           />
-          <Input placeholder="**********" secureTextEntry={true} />
+          <Input
+            label="Password"
+            placeholder="**********"
+            secureTextEntry={true}
+          />
         </View>
 
         <View
