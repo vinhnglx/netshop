@@ -1,5 +1,15 @@
 {
-  "users": [],
+  "users": [
+    {
+      "firstName": "Vinh",
+      "lastName": "First",
+      "username": "vinh1",
+      "email": "vinh1@gmail.com",
+      "password": "$2b$10$hxonsiFA5Vql7NJeVvAAw.7nme2HtH1u/P9byG9GVsF/v0tsIiRa.",
+      "role": "CUSTOMER",
+      "id": 1
+    }
+  ],
   "products": [
     {
       "name": "Product 1",
@@ -8,7 +18,8 @@
       "imageURL": "https://picsum.photos/400",
       "quantity": 10,
       "status": "available",
-      "SKU": "SKU001"
+      "SKU": "SKU001",
+      "bestSeller": true
     },
     {
       "name": "Product 2",
@@ -17,7 +28,8 @@
       "imageURL": "https://picsum.photos/400",
       "quantity": 5,
       "status": "available",
-      "SKU": "SKU002"
+      "SKU": "SKU002",
+      "bestSeller": true
     },
     {
       "name": "Product 3",
@@ -26,7 +38,8 @@
       "imageURL": "https://picsum.photos/400",
       "quantity": 2,
       "status": "available",
-      "SKU": "SKU003"
+      "SKU": "SKU003",
+      "bestSeller": true
     },
     {
       "name": "Product 4",
@@ -35,7 +48,8 @@
       "imageURL": "https://picsum.photos/400",
       "quantity": 0,
       "status": "sold out",
-      "SKU": "SKU004"
+      "SKU": "SKU004",
+      "bestSeller": true
     },
     {
       "name": "Product 5",
@@ -44,7 +58,8 @@
       "imageURL": "https://picsum.photos/400",
       "quantity": 8,
       "status": "available",
-      "SKU": "SKU005"
+      "SKU": "SKU005",
+      "bestSeller": false
     },
     {
       "name": "Product 6",
@@ -53,7 +68,8 @@
       "imageURL": "https://picsum.photos/400",
       "quantity": 3,
       "status": "available",
-      "SKU": "SKU006"
+      "SKU": "SKU006",
+      "bestSeller": false
     },
     {
       "name": "Product 7",
@@ -62,7 +78,8 @@
       "imageURL": "https://picsum.photos/400",
       "quantity": 6,
       "status": "available",
-      "SKU": "SKU007"
+      "SKU": "SKU007",
+      "bestSeller": false
     },
     {
       "name": "Product 8",
@@ -71,7 +88,8 @@
       "imageURL": "https://picsum.photos/400",
       "quantity": 1,
       "status": "available",
-      "SKU": "SKU008"
+      "SKU": "SKU008",
+      "bestSeller": false
     },
     {
       "name": "Product 9",
@@ -80,7 +98,8 @@
       "imageURL": "https://picsum.photos/400",
       "quantity": 4,
       "status": "available",
-      "SKU": "SKU009"
+      "SKU": "SKU009",
+      "bestSeller": false
     }
   ]
 }
