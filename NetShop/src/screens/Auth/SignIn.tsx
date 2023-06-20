@@ -1,12 +1,16 @@
 import {useNavigation} from '@react-navigation/native';
 import {Button, Input, Text} from '@rneui/themed';
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {BackIcon} from '../../components/BackIcon';
 import {GoogleIcon} from '../../components/GoogleIcon';
 import {useSafeAreaPadding} from '../../hooks/useSafeAreaPadding';
 import {AuthStackParamList} from '../../../App';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {Controller, useForm} from 'react-hook-form';
+import {yupResolver} from '@hookform/resolvers/yup';
+import {signInSchema} from '../../models/User.validation';
+import {useAuth} from '../../hooks/useAuth';
 
 const styles = StyleSheet.create({
   container: {
@@ -24,6 +28,9 @@ const styles = StyleSheet.create({
   flex1: {
     flex: 1,
   },
+  flex2: {
+    flex: 2,
+  },
   heading: {
     fontWeight: 'bold',
     marginBottom: 10,
@@ -32,7 +39,6 @@ const styles = StyleSheet.create({
     color: '#707B81',
   },
   spacing: {
-    marginTop: 20,
     paddingLeft: 20,
     paddingRight: 20,
     gap: 20,
@@ -53,8 +59,29 @@ const styles = StyleSheet.create({
 
 const SignInScreen = () => {
   const insets = useSafeAreaPadding();
+
   const navigation =
     useNavigation<NativeStackNavigationProp<AuthStackParamList, 'SignUp'>>();
+
+  const {
+    control,
+    handleSubmit,
+    formState: {errors},
+  } = useForm<{username: string; password: string}>({
+    resolver: yupResolver(signInSchema),
+  });
+
+  const [isError, setIsError] = useState(false);
+
+  const auth = useAuth();
+
+  const onSubmit = async (data: {username: string; password: string}) => {
+    try {
+      await auth.signIn(data.username, data.password);
+    } catch (error) {
+      setIsError(true);
+    }
+  };
 
   return (
     <View style={[insets, styles.container]}>
@@ -72,17 +99,52 @@ const SignInScreen = () => {
         </Text>
       </View>
 
-      <View style={styles.flex1}>
-        <Input label="User Name" placeholder="johndoe" />
-        <Input
-          label="Password"
-          placeholder="**********"
-          secureTextEntry={true}
+      <View style={[styles.flex2, styles.center]}>
+        <Controller
+          control={control}
+          rules={{
+            required: true,
+          }}
+          render={({field: {onChange, onBlur, value}}) => (
+            <Input
+              label="User Name"
+              placeholder="johndoe"
+              autoCapitalize="none"
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+              errorMessage={errors.username ? errors.username.message : ''}
+            />
+          )}
+          name="username"
+        />
+        <Controller
+          control={control}
+          rules={{
+            required: true,
+          }}
+          render={({field: {onChange, onBlur, value}}) => (
+            <Input
+              label="Password"
+              placeholder="**********"
+              secureTextEntry={true}
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+              errorMessage={errors.password ? errors.password.message : ''}
+            />
+          )}
+          name="password"
         />
       </View>
 
       <View style={[styles.flex1, styles.spacing]}>
-        <Button buttonStyle={styles.ctaButtonRounded}>Sign In</Button>
+        {isError && <Text>Something went wrong! Please check your input</Text>}
+        <Button
+          buttonStyle={styles.ctaButtonRounded}
+          onPress={handleSubmit(onSubmit)}>
+          Sign In
+        </Button>
         <Button
           buttonStyle={[styles.whiteBackround, styles.ctaButtonRounded]}
           titleStyle={styles.googleCtaButtonTitle}>

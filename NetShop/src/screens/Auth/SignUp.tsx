@@ -1,6 +1,8 @@
+import {yupResolver} from '@hookform/resolvers/yup';
 import {useNavigation} from '@react-navigation/native';
 import {Button, Input, Text} from '@rneui/themed';
 import React from 'react';
+import {Controller, useForm} from 'react-hook-form';
 import {
   Keyboard,
   ScrollView,
@@ -10,6 +12,9 @@ import {
 } from 'react-native';
 import {BackIcon} from '../../components/BackIcon';
 import {useSafeAreaPadding} from '../../hooks/useSafeAreaPadding';
+import {User, UserRole} from '../../models/User';
+import {userSchema} from '../../models/User.validation';
+import {useAuth} from '../../hooks/useAuth';
 
 const styles = StyleSheet.create({
   container: {
@@ -69,6 +74,24 @@ const styles = StyleSheet.create({
 const SignUpScreen = () => {
   const insets = useSafeAreaPadding();
   const navigation = useNavigation();
+  const {
+    control,
+    handleSubmit,
+    formState: {errors},
+  } = useForm<Omit<User, 'role'>>({
+    resolver: yupResolver(userSchema),
+  });
+
+  const auth = useAuth();
+
+  const onSubmit = async (data: Omit<User, 'role'>) => {
+    const user = {
+      ...data,
+      role: UserRole.CUSTOMER,
+    };
+
+    await auth.signUp(user);
+  };
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -91,24 +114,108 @@ const SignUpScreen = () => {
         </View>
 
         <View style={[styles.flex2, styles.form]}>
-          <Input label="First Name" placeholder="John" />
-          <Input label="Last Name" placeholder="doe" />
-          <Input label="User Name" placeholder="johndoe" />
-          <Input
-            label="Email Address"
-            placeholder="johndoe@example.com"
-            inputMode="email"
+          <Controller
+            control={control}
+            rules={{
+              required: true,
+            }}
+            render={({field: {onChange, onBlur, value}}) => (
+              <Input
+                label="First Name"
+                placeholder="John"
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
+                errorMessage={errors.firstName ? errors.firstName.message : ''}
+              />
+            )}
+            name="firstName"
           />
-          <Input
-            label="Password"
-            placeholder="**********"
-            secureTextEntry={true}
+
+          <Controller
+            control={control}
+            rules={{
+              required: true,
+            }}
+            render={({field: {onChange, onBlur, value}}) => (
+              <Input
+                label="Last Name"
+                placeholder="Doe"
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
+                errorMessage={errors.lastName ? errors.lastName.message : ''}
+              />
+            )}
+            name="lastName"
+          />
+
+          <Controller
+            control={control}
+            rules={{
+              required: true,
+            }}
+            render={({field: {onChange, onBlur, value}}) => (
+              <Input
+                label="User Name"
+                placeholder="johndoe"
+                autoCapitalize="none"
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
+                errorMessage={errors.username ? errors.username.message : ''}
+              />
+            )}
+            name="username"
+          />
+
+          <Controller
+            control={control}
+            rules={{
+              required: true,
+            }}
+            render={({field: {onChange, onBlur, value}}) => (
+              <Input
+                label="Email"
+                placeholder="johndoe@example.com"
+                inputMode="email"
+                autoCapitalize="none"
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
+                errorMessage={errors.email ? errors.email.message : ''}
+              />
+            )}
+            name="email"
+          />
+
+          <Controller
+            control={control}
+            rules={{
+              required: true,
+            }}
+            render={({field: {onChange, onBlur, value}}) => (
+              <Input
+                label="Password"
+                placeholder="**********"
+                secureTextEntry={true}
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
+                errorMessage={errors.password ? errors.password.message : ''}
+              />
+            )}
+            name="password"
           />
         </View>
 
         <View
           style={[styles.flex1, styles.spacing, styles.justifyContentCenter]}>
-          <Button buttonStyle={styles.ctaButtonRounded}>Sign Up</Button>
+          <Button
+            buttonStyle={styles.ctaButtonRounded}
+            onPress={handleSubmit(onSubmit)}>
+            Sign Up
+          </Button>
         </View>
 
         <View style={[styles.alignItemsCenter, styles.ctaSignIn]}>
