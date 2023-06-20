@@ -51,11 +51,14 @@ const WelcomeScreen = () => {
   return (
     <View style={[insets, styles.container]}>
       <ImageBackground
-        source={require('../static/welcome_bg.png')}
+        source={require('../../static/welcome_bg.png')}
         style={styles.container}
         resizeMode="contain">
         <View style={styles.imageView}>
-          <Image source={require('../static/shoe.png')} style={styles.image} />
+          <Image
+            source={require('../../static/shoe.png')}
+            style={styles.image}
+          />
         </View>
 
         <View style={styles.contentView}>
