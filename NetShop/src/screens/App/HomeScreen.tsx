@@ -1,16 +1,11 @@
-import React from 'react';
-import {useSafeAreaPadding} from '../../hooks/useSafeAreaPadding';
-import {
-  ActivityIndicator,
-  ScrollView,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Text} from '@rneui/themed';
 import {chunk} from 'lodash';
-import {Card, Image, Text} from '@rneui/themed';
+import React from 'react';
+import {ActivityIndicator, ScrollView, StyleSheet, View} from 'react-native';
+import {ProductCard} from '../../components/ProductCard';
 import {useGetProducts} from '../../hooks/useGetProducts';
-import {ProductService} from '../../services/ProductService';
+import {useSafeAreaPadding} from '../../hooks/useSafeAreaPadding';
+import {Product} from '../../models/Product';
 
 const styles = StyleSheet.create({
   container: {
@@ -30,6 +25,10 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
+  },
+  rowWithoutCenter: {
+    flex: 1,
+    flexDirection: 'row',
   },
   card: {
     borderRadius: 16,
@@ -61,35 +60,14 @@ const HomeScreen = () => {
 
   const {data, isLoading} = useGetProducts();
 
-  console.log('dat12a', data);
-
-  const renderRow = () => (
-    <>
-      {data?.map((product, index) => (
-        <Card key={index} containerStyle={styles.card}>
-          <TouchableOpacity>
-            <Card.Title>
-              <Image
-                source={{
-                  uri: 'https://picsum.photos/400',
-                }}
-                style={styles.image}
-              />
-            </Card.Title>
-            <Card.Divider />
-            {product.bestSeller && (
-              <Card.FeaturedSubtitle>
-                <Text style={styles.featured}>BEST SELLER</Text>
-              </Card.FeaturedSubtitle>
-            )}
-            <Text h4 h4Style={styles.productName}>
-              {product.name}
-            </Text>
-            <Text style={styles.pricing}>{product.price}</Text>
-          </TouchableOpacity>
-        </Card>
+  const renderRow = (rowProducts: Product[], rowIndex: number) => (
+    <View
+      key={`row_${rowIndex}`}
+      style={rowProducts.length === 2 ? styles.row : styles.rowWithoutCenter}>
+      {rowProducts?.map((product, index) => (
+        <ProductCard key={`product_${index}`} {...product} index={index} />
       ))}
-    </>
+    </View>
   );
 
   return (
@@ -104,60 +82,10 @@ const HomeScreen = () => {
         {isLoading ? (
           <ActivityIndicator size="large" color="#5B9EE1" />
         ) : data && data.length > 0 ? (
-          <View style={styles.row}>{chunk(data, 2).map(renderRow)}</View>
+          <>{chunk(data, 2).map(renderRow)}</>
         ) : (
           <Text>Whoops, No data available</Text>
         )}
-
-        {/* <View style={styles.row}>
-          <Card containerStyle={styles.card}>
-            <TouchableOpacity>
-              <Card.Title>
-                <Image
-                  source={{
-                    uri: 'https://picsum.photos/400',
-                  }}
-                  style={styles.image}
-                />
-              </Card.Title>
-              <Card.Divider />
-              <Card.FeaturedSubtitle>
-                <Text style={styles.featured}>BEST SELLER</Text>
-              </Card.FeaturedSubtitle>
-              <Text h4 h4Style={styles.productName}>
-                Nike Jordan
-              </Text>
-              <Text style={styles.pricing}>$459.00</Text>
-            </TouchableOpacity>
-          </Card>
-
-          <Card
-            containerStyle={{
-              borderRadius: 16,
-              elevation: 0,
-              borderWidth: 0,
-              shadowColor: 'rgba(0,0,0, 0.0)',
-              shadowOffset: {height: 0, width: 0},
-              shadowOpacity: 0,
-              shadowRadius: 0,
-            }}>
-            <TouchableOpacity>
-              <Card.Title>
-                <Image
-                  source={{
-                    uri: 'https://picsum.photos/400',
-                  }}
-                  style={{
-                    width: 120,
-                    height: 120,
-                  }}
-                />
-              </Card.Title>
-              <Card.Divider />
-              <Text>Demo</Text>
-            </TouchableOpacity>
-          </Card>
-        </View> */}
       </View>
     </ScrollView>
   );
