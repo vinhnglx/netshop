@@ -1,16 +1,23 @@
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
+import {ActivityIndicator} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {AuthProvider} from './src/contexts/Auth';
+import {useAuth} from './src/hooks/useAuth';
+import {useBottomBarIcon} from './src/hooks/useBottomBarIcon';
+import FavouriteScreen from './src/screens/App/FavouriteScreen';
 import HomeScreen from './src/screens/App/HomeScreen';
+import NotificationScreen from './src/screens/App/NotificationScreen';
+import ProfileScreen from './src/screens/App/ProfileScreen';
 import SignInScreen from './src/screens/Auth/SignIn';
 import SignUpScreen from './src/screens/Auth/SignUp';
 import WelcomeScreen from './src/screens/Auth/Welcome';
-import {AuthProvider} from './src/contexts/Auth';
-import {useAuth} from './src/hooks/useAuth';
-import {ActivityIndicator} from 'react-native';
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 
 const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 export type AuthStackParamList = {
   Welcome: undefined;
@@ -26,17 +33,62 @@ const AuthStack = () => (
   </Stack.Navigator>
 );
 
-const AppStack = () => (
-  <Stack.Navigator screenOptions={{headerShown: false}}>
-    <Stack.Screen name="Home" component={HomeScreen} />
-  </Stack.Navigator>
-);
+const AppStack = () => {
+  const {
+    HomeTabBarIcon,
+    NotificationTabBarIcon,
+    FavouriteTabBarIcon,
+    ProfileTabBarIcon,
+  } = useBottomBarIcon();
+
+  return (
+    <Tab.Navigator
+      initialRouteName="Home"
+      screenOptions={{
+        tabBarActiveTintColor: '#5B9EE1',
+        headerShown: false,
+      }}>
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          tabBarLabel: 'Home',
+          tabBarIcon: HomeTabBarIcon,
+        }}
+      />
+      <Tab.Screen
+        name="Favourite"
+        component={FavouriteScreen}
+        options={{
+          tabBarLabel: 'Favourite',
+          tabBarIcon: FavouriteTabBarIcon,
+        }}
+      />
+      <Tab.Screen
+        name="Notification"
+        component={NotificationScreen}
+        options={{
+          tabBarLabel: 'Notification',
+          tabBarIcon: NotificationTabBarIcon,
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{
+          tabBarLabel: 'Profile',
+          tabBarIcon: ProfileTabBarIcon,
+        }}
+      />
+    </Tab.Navigator>
+  );
+};
 
 const Router = () => {
   const {loading, authResponse} = useAuth();
 
   if (loading) {
-    return <ActivityIndicator size="large" color="#00ff00" />;
+    return <ActivityIndicator size="large" color="#5B9EE1" />;
   }
 
   return (
@@ -46,11 +98,15 @@ const Router = () => {
   );
 };
 
+const queryClient = new QueryClient();
+
 const App = () => {
   return (
     <SafeAreaProvider>
       <AuthProvider>
-        <Router />
+        <QueryClientProvider client={queryClient}>
+          <Router />
+        </QueryClientProvider>
       </AuthProvider>
     </SafeAreaProvider>
   );
