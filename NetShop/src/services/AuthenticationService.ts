@@ -1,16 +1,16 @@
-import axios from 'axios';
-
 import BcryptReactNative from 'bcrypt-react-native';
 import {User, UserRole} from '../models/User';
+import {
+  BASE_API_URL,
+  BASE_API_URL_ANDROID,
+  axiosInstance,
+} from '../util/common';
+import {Platform} from 'react-native';
 
-const BASE_API_URL = 'http://localhost:3000';
-const USERS_API_URL = `${BASE_API_URL}/users`;
-const axiosInstance = axios.create({
-  headers: {
-    'Content-Type': 'application/json',
-    'Cache-Control': 'no-cache',
-  },
-});
+const USERS_API_URL =
+  Platform.OS === 'ios'
+    ? `${BASE_API_URL}/users`
+    : `${BASE_API_URL_ANDROID}/users`;
 
 export interface AuthResponse {
   error?: string;
@@ -23,7 +23,7 @@ const MOCK_JWT =
 
 const signUp = async (user: User) => {
   try {
-    const response = await axiosInstance.get('http://localhost:3000/users');
+    const response = await axiosInstance.get(USERS_API_URL);
     const users: User[] = response.data;
 
     const existingUser = users.find(u => u.username === user.username);
