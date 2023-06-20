@@ -1,0 +1,13 @@
+diff --git a/node_modules/bcrypt-react-native/android/build.gradle b/node_modules/bcrypt-react-native/android/build.gradle
+index 20928cf..92beda2 100644
+--- a/node_modules/bcrypt-react-native/android/build.gradle
++++ b/node_modules/bcrypt-react-native/android/build.gradle
+@@ -10,7 +10,7 @@ buildscript {
+   dependencies {
+     classpath 'com.android.tools.build:gradle:3.2.1'
+     // noinspection DifferentKotlinGradleVersion
+-    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
++    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.20"
+   }
+ }
+ 
