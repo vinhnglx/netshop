@@ -2,6 +2,9 @@ import {Card, Image, Text} from '@rneui/themed';
 import React from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import {Product} from '../models/Product';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {AppCustomerStackParamList} from '../../App';
 
 const styles = StyleSheet.create({
   card: {
@@ -30,10 +33,17 @@ const styles = StyleSheet.create({
 });
 
 export const ProductCard = (props: Product & {index: number}) => {
-  const {name, price, bestSeller, index, imageURL} = props;
+  const {name, price, bestSeller, index, imageURL, id} = props;
+
+  const navigation =
+    useNavigation<
+      NativeStackNavigationProp<AppCustomerStackParamList, 'ProductDetail'>
+    >();
+
   return (
     <Card key={index} containerStyle={styles.card}>
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('ProductDetail', {id})}>
         <Card.Title>
           <Image
             source={{

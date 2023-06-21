@@ -6,6 +6,7 @@ import {Button} from '@rneui/themed';
 const styles = StyleSheet.create({
   right: {
     marginRight: 20,
+    marginBottom: 10,
   },
 });
 

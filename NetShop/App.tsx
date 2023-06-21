@@ -12,6 +12,7 @@ import {useHeaderBarIcon} from './src/hooks/useHeaderBarIcon';
 import FavouriteScreen from './src/screens/App/FavouriteScreen';
 import HomeScreen from './src/screens/App/HomeScreen';
 import NotificationScreen from './src/screens/App/NotificationScreen';
+import ProductDetailScreen from './src/screens/App/ProductDetailScreen';
 import ProfileScreen from './src/screens/App/ProfileScreen';
 import SignInScreen from './src/screens/Auth/SignIn';
 import SignUpScreen from './src/screens/Auth/SignUp';
@@ -26,11 +27,23 @@ export type AuthStackParamList = {
   SignUp: undefined;
 };
 
+export type AppCustomerStackParamList = {
+  Home: undefined;
+  ProductDetail: {id: number | undefined};
+};
+
 const AuthStack = () => (
   <Stack.Navigator screenOptions={{headerShown: false}}>
     <Stack.Screen name="Welcome" component={WelcomeScreen} />
     <Stack.Screen name="SignIn" component={SignInScreen} />
     <Stack.Screen name="SignUp" component={SignUpScreen} />
+  </Stack.Navigator>
+);
+
+const CustomerHomeStack = () => (
+  <Stack.Navigator screenOptions={{headerShown: false}}>
+    <Stack.Screen name="Home" component={HomeScreen} />
+    <Stack.Screen name="ProductDetail" component={ProductDetailScreen} />
   </Stack.Navigator>
 );
 
@@ -55,8 +68,8 @@ const AppCustomerStack = () => {
         },
       }}>
       <Tab.Screen
-        name="Home"
-        component={HomeScreen}
+        name="HomeTag"
+        component={CustomerHomeStack}
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: HomeTabBarIcon,
