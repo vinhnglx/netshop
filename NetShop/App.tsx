@@ -34,7 +34,7 @@ const AuthStack = () => (
   </Stack.Navigator>
 );
 
-const AppStack = () => {
+const AppCustomerStack = () => {
   const {
     HomeTabBarIcon,
     NotificationTabBarIcon,
@@ -101,7 +101,7 @@ const Router = () => {
 
   return (
     <NavigationContainer>
-      {authResponse ? <AppStack /> : <AuthStack />}
+      {authResponse ? <AppCustomerStack /> : <AuthStack />}
     </NavigationContainer>
   );
 };
