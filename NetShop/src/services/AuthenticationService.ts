@@ -36,11 +36,12 @@ const signUp = async (user: User) => {
     const hash = await BcryptReactNative.hash(salt, user.password);
 
     user.password = hash;
-    await axiosInstance.post(USERS_API_URL, user);
+    const userResponse = await axiosInstance.post(USERS_API_URL, user);
 
     return {
       token: MOCK_JWT,
       role: UserRole.CUSTOMER,
+      userId: userResponse.data.id,
     } as AuthResponse;
   } catch (error: any) {
     return {error: 'Something went wrong'} as AuthResponse;
@@ -70,6 +71,7 @@ const signIn = async (username: string, password: string) => {
     return {
       token: MOCK_JWT,
       role: user.role,
+      userId: user.id,
     } as AuthResponse;
   } catch (error: any) {
     return {error: 'Something went wrong'} as AuthResponse;

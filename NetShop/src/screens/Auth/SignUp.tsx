@@ -78,13 +78,15 @@ const SignUpScreen = () => {
     control,
     handleSubmit,
     formState: {errors},
-  } = useForm<Omit<User, 'role'>>({
+  } = useForm<Pick<User, Exclude<keyof User, 'role' | 'id'>>>({
     resolver: yupResolver(userSchema),
   });
 
   const auth = useAuth();
 
-  const onSubmit = async (data: Omit<User, 'role'>) => {
+  const onSubmit = async (
+    data: Pick<User, Exclude<keyof User, 'role' | 'id'>>,
+  ) => {
     const user = {
       ...data,
       role: UserRole.CUSTOMER,

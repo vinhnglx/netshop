@@ -12,6 +12,7 @@ export type AuthContextData = {
   authResponse?: AuthResponse;
   signUp(user: User): Promise<void>;
   signIn(username: string, password: string): Promise<void>;
+  signOut(): Promise<void>;
 };
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -49,7 +50,7 @@ const AuthProvider: React.FC<Props> = ({children}) => {
 
     setAuthResponse(response);
 
-    AsyncStorage.setItem('@AuthResponse', JSON.stringify(response));
+    await AsyncStorage.setItem('@AuthResponse', JSON.stringify(response));
   };
 
   const signIn = async (username: string, password: string) => {
@@ -57,11 +58,18 @@ const AuthProvider: React.FC<Props> = ({children}) => {
 
     setAuthResponse(response);
 
-    AsyncStorage.setItem('@AuthResponse', JSON.stringify(response));
+    await AsyncStorage.setItem('@AuthResponse', JSON.stringify(response));
+  };
+
+  const signOut = async () => {
+    setAuthResponse(undefined);
+
+    await AsyncStorage.removeItem('@AuthResponse');
   };
 
   return (
-    <AuthContext.Provider value={{authResponse, loading, signUp, signIn}}>
+    <AuthContext.Provider
+      value={{authResponse, loading, signUp, signIn, signOut}}>
       {children}
     </AuthContext.Provider>
   );

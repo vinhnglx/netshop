@@ -1,6 +1,7 @@
-import {Text} from '@rneui/themed';
+import {Button} from '@rneui/themed';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
+import {useAuth} from '../../hooks/useAuth';
 
 const styles = StyleSheet.create({
   container: {
@@ -10,9 +11,12 @@ const styles = StyleSheet.create({
 });
 
 const ProfileScreen = () => {
+  const auth = useAuth();
   return (
     <View style={styles.container}>
-      <Text>ProfileScreen</Text>
+      <Button color="warning" onPress={async () => auth.signOut()}>
+        Log out
+      </Button>
     </View>
   );
 };
