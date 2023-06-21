@@ -1,12 +1,14 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import React from 'react';
 import {ActivityIndicator} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {AuthProvider} from './src/contexts/Auth';
 import {useAuth} from './src/hooks/useAuth';
 import {useBottomBarIcon} from './src/hooks/useBottomBarIcon';
+import {useHeaderBarIcon} from './src/hooks/useHeaderBarIcon';
 import FavouriteScreen from './src/screens/App/FavouriteScreen';
 import HomeScreen from './src/screens/App/HomeScreen';
 import NotificationScreen from './src/screens/App/NotificationScreen';
@@ -14,7 +16,6 @@ import ProfileScreen from './src/screens/App/ProfileScreen';
 import SignInScreen from './src/screens/Auth/SignIn';
 import SignUpScreen from './src/screens/Auth/SignUp';
 import WelcomeScreen from './src/screens/Auth/Welcome';
-import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -41,12 +42,17 @@ const AppStack = () => {
     ProfileTabBarIcon,
   } = useBottomBarIcon();
 
+  const {CartButtonIcon, ClearAllButton} = useHeaderBarIcon();
+
   return (
     <Tab.Navigator
       initialRouteName="Home"
       screenOptions={{
         tabBarActiveTintColor: '#5B9EE1',
-        headerShown: false,
+        title: '',
+        headerStyle: {
+          backgroundColor: '#F8F9FA',
+        },
       }}>
       <Tab.Screen
         name="Home"
@@ -54,6 +60,7 @@ const AppStack = () => {
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: HomeTabBarIcon,
+          headerRight: CartButtonIcon,
         }}
       />
       <Tab.Screen
@@ -70,6 +77,7 @@ const AppStack = () => {
         options={{
           tabBarLabel: 'Notification',
           tabBarIcon: NotificationTabBarIcon,
+          headerRight: ClearAllButton,
         }}
       />
       <Tab.Screen

@@ -1,7 +1,7 @@
 import React, {useCallback} from 'react';
 import {SvgProps} from 'react-native-svg';
-import HomeIcon from '../components/HomeIcon';
 import FavouriteIcon from '../components/FavouriteIcon';
+import HomeIcon from '../components/HomeIcon';
 import NotificationIcon from '../components/NotificationIcon';
 import ProfileIcon from '../components/ProfileIcon';
 
