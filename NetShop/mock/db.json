@@ -19,7 +19,8 @@
       "quantity": 10,
       "status": "available",
       "SKU": "SKU001",
-      "bestSeller": true
+      "bestSeller": true,
+      "id": 1
     },
     {
       "name": "Product 2",
@@ -29,7 +30,8 @@
       "quantity": 5,
       "status": "available",
       "SKU": "SKU002",
-      "bestSeller": true
+      "bestSeller": true,
+      "id": 2
     },
     {
       "name": "Product 3",
@@ -39,7 +41,8 @@
       "quantity": 2,
       "status": "available",
       "SKU": "SKU003",
-      "bestSeller": true
+      "bestSeller": true,
+      "id": 3
     },
     {
       "name": "Product 4",
@@ -49,7 +52,8 @@
       "quantity": 0,
       "status": "sold out",
       "SKU": "SKU004",
-      "bestSeller": true
+      "bestSeller": true,
+      "id": 4
     },
     {
       "name": "Product 5",
@@ -59,7 +63,8 @@
       "quantity": 8,
       "status": "available",
       "SKU": "SKU005",
-      "bestSeller": false
+      "bestSeller": false,
+      "id": 5
     },
     {
       "name": "Product 6",
@@ -69,7 +74,8 @@
       "quantity": 3,
       "status": "available",
       "SKU": "SKU006",
-      "bestSeller": false
+      "bestSeller": false,
+      "id": 6
     },
     {
       "name": "Product 7",
@@ -79,7 +85,8 @@
       "quantity": 6,
       "status": "available",
       "SKU": "SKU007",
-      "bestSeller": false
+      "bestSeller": false,
+      "id": 7
     },
     {
       "name": "Product 8",
@@ -89,7 +96,8 @@
       "quantity": 1,
       "status": "available",
       "SKU": "SKU008",
-      "bestSeller": false
+      "bestSeller": false,
+      "id": 8
     },
     {
       "name": "Product 9",
@@ -99,7 +107,8 @@
       "quantity": 4,
       "status": "available",
       "SKU": "SKU009",
-      "bestSeller": false
+      "bestSeller": false,
+      "id": 9
     }
   ]
 }
