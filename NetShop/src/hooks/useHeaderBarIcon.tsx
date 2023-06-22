@@ -1,7 +1,8 @@
+import {Button} from '@rneui/themed';
 import React, {useCallback} from 'react';
 import {StyleSheet} from 'react-native';
+import CartActiveIcon from '../components/CartActiveIcon';
 import CartIcon from '../components/CartIcon';
-import {Button} from '@rneui/themed';
 
 const styles = StyleSheet.create({
   right: {
@@ -22,6 +23,11 @@ export const useHeaderBarIcon = () => {
     [],
   );
 
+  const CartActiveButtonIcon = useCallback(
+    (props: CartProps) => <CartActiveIcon {...props} style={styles.right} />,
+    [],
+  );
+
   const ClearAllButton = useCallback(
     () => <Button title="Clear All" size="sm" type="clear" />,
     [],
@@ -30,5 +36,6 @@ export const useHeaderBarIcon = () => {
   return {
     CartButtonIcon,
     ClearAllButton,
+    CartActiveButtonIcon,
   };
 };

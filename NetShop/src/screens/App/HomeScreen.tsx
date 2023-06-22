@@ -3,6 +3,7 @@ import {chunk} from 'lodash';
 import React from 'react';
 import {ActivityIndicator, ScrollView, StyleSheet, View} from 'react-native';
 import {ProductCard} from '../../components/ProductCard';
+import {useFetchCart} from '../../hooks/useFetchCart';
 import {useGetProducts} from '../../hooks/useGetProducts';
 import {useSafeAreaPadding} from '../../hooks/useSafeAreaPadding';
 import {Product} from '../../models/Product';
@@ -59,6 +60,8 @@ const HomeScreen = () => {
   const insets = useSafeAreaPadding();
 
   const {data, isLoading} = useGetProducts();
+
+  useFetchCart();
 
   const renderRow = (rowProducts: Product[], rowIndex: number) => (
     <View

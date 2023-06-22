@@ -6,8 +6,10 @@ import React from 'react';
 import {ActivityIndicator} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {AuthProvider} from './src/contexts/Auth';
+import {CartProvider} from './src/contexts/Cart';
 import {useAuth} from './src/hooks/useAuth';
 import {useBottomBarIcon} from './src/hooks/useBottomBarIcon';
+import {useCart} from './src/hooks/useCart';
 import {useHeaderBarIcon} from './src/hooks/useHeaderBarIcon';
 import FavouriteScreen from './src/screens/App/FavouriteScreen';
 import HomeScreen from './src/screens/App/HomeScreen';
@@ -55,7 +57,10 @@ const AppCustomerStack = () => {
     ProfileTabBarIcon,
   } = useBottomBarIcon();
 
-  const {CartButtonIcon, ClearAllButton} = useHeaderBarIcon();
+  const {CartButtonIcon, ClearAllButton, CartActiveButtonIcon} =
+    useHeaderBarIcon();
+
+  const {cart} = useCart();
 
   return (
     <Tab.Navigator
@@ -73,7 +78,7 @@ const AppCustomerStack = () => {
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: HomeTabBarIcon,
-          headerRight: CartButtonIcon,
+          headerRight: cart ? CartActiveButtonIcon : CartButtonIcon,
         }}
       />
       <Tab.Screen
@@ -114,7 +119,13 @@ const Router = () => {
 
   return (
     <NavigationContainer>
-      {authResponse ? <AppCustomerStack /> : <AuthStack />}
+      {authResponse ? (
+        <CartProvider>
+          <AppCustomerStack />
+        </CartProvider>
+      ) : (
+        <AuthStack />
+      )}
     </NavigationContainer>
   );
 };

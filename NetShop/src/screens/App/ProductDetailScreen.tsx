@@ -2,6 +2,7 @@ import {useRoute} from '@react-navigation/native';
 import {Button, Image, Text} from '@rneui/themed';
 import React from 'react';
 import {ActivityIndicator, ScrollView, StyleSheet, View} from 'react-native';
+import {useFetchCart} from '../../hooks/useFetchCart';
 import {useGetProduct} from '../../hooks/useGetProduct';
 
 const styles = StyleSheet.create({
@@ -75,17 +76,19 @@ type RouteParams = {
 };
 
 const ProductDetailScreen = () => {
+  useFetchCart();
   const route = useRoute();
-
   const {id} = route.params as RouteParams;
 
   const {data: product, isLoading} = useGetProduct(id);
+
+  const {isProductInCart, userId, addToCart} = useFetchCart();
 
   return (
     <View style={styles.container}>
       {isLoading ? (
         <ActivityIndicator size="large" color="#5B9EE1" />
-      ) : (
+      ) : product ? (
         <>
           <ScrollView contentContainerStyle={styles.contentContainer}>
             <View style={styles.centerItem}>
@@ -93,30 +96,44 @@ const ProductDetailScreen = () => {
             </View>
 
             <View style={styles.product}>
-              {product?.bestSeller && (
+              {product.bestSeller && (
                 <Text style={styles.featured}>BEST SELLER</Text>
               )}
               <Text h3 h3Style={styles.productName}>
-                {product?.name}
+                {product.name}
               </Text>
               <Text h4 h4Style={styles.pricing}>
-                ${product?.price}
+                ${product.price}
               </Text>
-              <Text style={styles.description}>{product?.description}</Text>
+              <Text style={styles.description}>{product.description}</Text>
             </View>
           </ScrollView>
           <View style={styles.footer}>
             <View style={styles.flex1}>
               <Text style={styles.footerPrice}>Price</Text>
-              <Text h3>${product?.price}</Text>
+              <Text h3>${product.price}</Text>
             </View>
             <View style={styles.flex1}>
-              <Button size="lg" buttonStyle={styles.addToCartCta}>
-                Add To Cart
-              </Button>
+              {product.id && (
+                <Button
+                  disabled={isProductInCart(product.id)}
+                  size="lg"
+                  buttonStyle={styles.addToCartCta}
+                  onPress={async () => {
+                    if (userId && product.id) {
+                      await addToCart(product.id, userId);
+                    }
+                  }}>
+                  {isProductInCart(product.id)
+                    ? 'Added To Cart'
+                    : 'Add To Cart'}
+                </Button>
+              )}
             </View>
           </View>
         </>
+      ) : (
+        <Text>No product</Text>
       )}
     </View>
   );
