@@ -16,6 +16,7 @@ export interface AuthResponse {
   error?: string;
   token?: string;
   role?: UserRole;
+  userId: number;
 }
 
 const MOCK_JWT =
