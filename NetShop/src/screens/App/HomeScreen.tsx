@@ -5,7 +5,6 @@ import {ActivityIndicator, ScrollView, StyleSheet, View} from 'react-native';
 import {ProductCard} from '../../components/ProductCard';
 import {useFetchCart} from '../../hooks/useFetchCart';
 import {useGetProducts} from '../../hooks/useGetProducts';
-import {useSafeAreaPadding} from '../../hooks/useSafeAreaPadding';
 import {Product} from '../../models/Product';
 
 const styles = StyleSheet.create({
@@ -57,8 +56,6 @@ const styles = StyleSheet.create({
 });
 
 const HomeScreen = () => {
-  const insets = useSafeAreaPadding();
-
   const {data, isLoading} = useGetProducts();
 
   useFetchCart();
@@ -76,7 +73,7 @@ const HomeScreen = () => {
   return (
     <ScrollView
       contentContainerStyle={styles.contentContainer}
-      style={[insets, styles.container]}>
+      style={[styles.container]}>
       <View style={styles.list}>
         <Text h4 h4Style={styles.heading}>
           Popular Shoes
