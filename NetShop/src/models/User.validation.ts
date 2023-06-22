@@ -1,11 +1,6 @@
-import {Profanity, ProfanityOptions} from '@2toad/profanity';
 import {PasswordStrengthStatistics} from 'tai-password-strength';
 import {object, string} from 'yup';
-
-const options = new ProfanityOptions();
-options.wholeWord = false;
-const profanity = new Profanity(options);
-profanity.addWords(['b00b', 'wh0re', 'wh0r3', 'whor3', 'a55h01e']); // TODO: Add more words
+import {createProfanityFilter} from '../util/common';
 
 const taiPasswordStrength = require('tai-password-strength');
 
@@ -16,6 +11,8 @@ export enum PasswordStrengthCode {
   STRONG = 'STRONG',
   VERY_STRONG = 'VERY_STRONG',
 }
+
+const profanity = createProfanityFilter();
 
 export const userSchema = object({
   firstName: string()
