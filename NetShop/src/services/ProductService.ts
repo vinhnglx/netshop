@@ -5,6 +5,7 @@ import {
   axiosInstance,
 } from '../util/common';
 import {Product} from '../models/Product';
+import {SelectedProduct} from '../models/Cart';
 
 const PRODUCTS_API_URL =
   Platform.OS === 'ios'
@@ -21,4 +22,27 @@ const fetchProduct = async (id: number) => {
   return response.data as Product;
 };
 
-export const ProductService = {fetchProducts, fetchProduct};
+const updateProductQuantity = async (products: SelectedProduct[]) => {
+  const updatePromises: Promise<void>[] = products.map(async pro => {
+    const existingProduct = pro.product;
+    if (existingProduct) {
+      const updatedProduct = {
+        ...existingProduct,
+        quantity: existingProduct.quantity - pro.quantity,
+      };
+
+      await axiosInstance.put(
+        `${PRODUCTS_API_URL}/${updatedProduct.id}`,
+        updatedProduct,
+      );
+    }
+  });
+
+  await Promise.all(updatePromises);
+};
+
+export const ProductService = {
+  fetchProducts,
+  fetchProduct,
+  updateProductQuantity,
+};

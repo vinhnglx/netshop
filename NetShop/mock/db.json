@@ -8,6 +8,15 @@
       "password": "$2b$10$hxonsiFA5Vql7NJeVvAAw.7nme2HtH1u/P9byG9GVsF/v0tsIiRa.",
       "role": "CUSTOMER",
       "id": 1
+    },
+    {
+      "firstName": "Vinh",
+      "lastName": "2",
+      "username": "vinh2",
+      "email": "vinh2@a.com",
+      "password": "$2b$10$Pxq9VTeBUeFM9fE0qKppH.6.LFaGyGdC50L49sBEXQ/Hw2UAyJXGa",
+      "role": "CUSTOMER",
+      "id": 2
     }
   ],
   "products": [
@@ -16,7 +25,7 @@
       "description": "This is a short description for Product 1.",
       "price": 19.99,
       "imageURL": "https://picsum.photos/400",
-      "quantity": 10,
+      "quantity": 6,
       "status": "available",
       "SKU": "SKU001",
       "bestSeller": true,
@@ -111,10 +120,44 @@
       "id": 9
     }
   ],
-  "carts": [
+  "carts": [],
+  "orders": [
+    {
+      "userId": 2,
+      "receiver": {
+        "firstName": "Vinh",
+        "lastName": "2",
+        "email": "vinh2@a.com"
+      },
+      "selectedProducts": [
+        {
+          "product": {
+            "name": "Product 1",
+            "description": "This is a short description for Product 1.",
+            "price": 19.99,
+            "imageURL": "https://picsum.photos/400",
+            "quantity": 10,
+            "status": "available",
+            "SKU": "SKU001",
+            "bestSeller": true,
+            "id": 1
+          },
+          "quantity": 2
+        }
+      ],
+      "deliveryAddress": "Hamilton ",
+      "createdAt": "2023-06-22T12:16:15.619Z",
+      "deliveryDate": "2023-06-29T12:16:15.619Z",
+      "id": 1
+    },
     {
       "userId": 1,
-      "selectProducts": [
+      "receiver": {
+        "firstName": "Vinh",
+        "lastName": "First",
+        "email": "vinh1@gmail.com"
+      },
+      "selectedProducts": [
         {
           "product": {
             "name": "Product 1",
@@ -130,8 +173,10 @@
           "quantity": 4
         }
       ],
-      "totalPrice": 79.96000000000001,
-      "id": 1
+      "deliveryAddress": "Hamilton",
+      "createdAt": "2023-06-22T12:29:12.737Z",
+      "deliveryDate": "2023-06-29T12:29:12.737Z",
+      "id": 2
     }
   ]
 }

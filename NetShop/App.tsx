@@ -7,6 +7,7 @@ import {ActivityIndicator} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {AuthProvider} from './src/contexts/Auth';
 import {CartProvider} from './src/contexts/Cart';
+import {OrderProvider} from './src/contexts/Order';
 import {useAuth} from './src/hooks/useAuth';
 import {useBottomBarIcon} from './src/hooks/useBottomBarIcon';
 import {useCart} from './src/hooks/useCart';
@@ -116,27 +117,29 @@ const Router = () => {
     <NavigationContainer>
       {authResponse ? (
         <CartProvider>
-          <Stack.Navigator>
-            <Stack.Screen
-              name="Tabs"
-              component={AppCustomerStack}
-              options={{headerShown: false}}
-            />
-            <Stack.Screen
-              name="ProductDetail"
-              component={ProductDetailScreen}
-              options={{
-                title: '',
-                headerBackTitle: '',
-                headerRight: GoToCart,
-              }}
-            />
-            <Stack.Screen
-              name="CartCheckOut"
-              component={CartScreen}
-              options={{title: 'Checkout', headerBackTitle: ''}}
-            />
-          </Stack.Navigator>
+          <OrderProvider>
+            <Stack.Navigator>
+              <Stack.Screen
+                name="Tabs"
+                component={AppCustomerStack}
+                options={{headerShown: false}}
+              />
+              <Stack.Screen
+                name="ProductDetail"
+                component={ProductDetailScreen}
+                options={{
+                  title: '',
+                  headerBackTitle: '',
+                  headerRight: GoToCart,
+                }}
+              />
+              <Stack.Screen
+                name="CartCheckOut"
+                component={CartScreen}
+                options={{title: 'Checkout', headerBackTitle: ''}}
+              />
+            </Stack.Navigator>
+          </OrderProvider>
         </CartProvider>
       ) : (
         <AuthStack />

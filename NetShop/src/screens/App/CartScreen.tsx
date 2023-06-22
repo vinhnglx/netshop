@@ -1,14 +1,19 @@
-import {Button, Input, Text} from '@rneui/themed';
-import React, {useEffect} from 'react';
-import {ScrollView, StyleSheet, View} from 'react-native';
-import {useCart} from '../../hooks/useCart';
-import {SelectedProduct} from '../../models/Cart';
-import {useNavigation} from '@react-navigation/native';
-import {CartItem} from '../../components/CartItem';
-import {useGetUser} from '../../hooks/useGetUser';
-import {Controller, useForm} from 'react-hook-form';
-import {checkoutSchema} from '../../models/Cart.validation';
 import {yupResolver} from '@hookform/resolvers/yup';
+import {useNavigation} from '@react-navigation/native';
+import {Button, Input, Text} from '@rneui/themed';
+import {addDays} from 'date-fns';
+import React, {useEffect} from 'react';
+import {Controller, useForm} from 'react-hook-form';
+import {ScrollView, StyleSheet, View} from 'react-native';
+import {CartItem} from '../../components/CartItem';
+import {useCart} from '../../hooks/useCart';
+import {useGetUser} from '../../hooks/useGetUser';
+import {SelectedProduct} from '../../models/Cart';
+import {checkoutSchema} from '../../models/Cart.validation';
+import {Order} from '../../models/Order';
+import {OrderService} from '../../services/OrderService';
+import {ProductService} from '../../services/ProductService';
+import {useOrder} from '../../hooks/useOrder';
 
 const styles = StyleSheet.create({
   container: {
@@ -61,7 +66,8 @@ type CheckoutFormData = {
 };
 
 const CartScreen = () => {
-  const {cart} = useCart();
+  const {cart, removeCart} = useCart();
+  const {setOrderStatus} = useOrder();
   const navigation = useNavigation();
 
   const products = cart?.selectProducts;
@@ -92,7 +98,31 @@ const CartScreen = () => {
   }, [user, setValue]);
 
   const onSubmit = async (data: CheckoutFormData) => {
-    console.log('data', data);
+    if (cart?.selectProducts) {
+      const currentDate = new Date();
+      const deliveryDate = addDays(currentDate, 7);
+
+      const order: Order = {
+        userId: user?.id,
+        receiver: {
+          firstName: data.firstName,
+          lastName: data.lastName,
+          email: data.email,
+        },
+        selectedProducts: cart?.selectProducts,
+        deliveryAddress: data.deliveryAddress,
+        createdAt: currentDate,
+        deliveryDate,
+      };
+
+      await Promise.all([
+        OrderService.createOrder(order),
+        removeCart(cart?.id),
+        ProductService.updateProductQuantity(cart?.selectProducts),
+      ]);
+
+      setOrderStatus(true);
+    }
   };
 
   return (

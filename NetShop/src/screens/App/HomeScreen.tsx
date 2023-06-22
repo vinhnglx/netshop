@@ -1,4 +1,4 @@
-import {Text} from '@rneui/themed';
+import {Dialog, Text} from '@rneui/themed';
 import {chunk} from 'lodash';
 import React from 'react';
 import {ActivityIndicator, ScrollView, StyleSheet, View} from 'react-native';
@@ -6,6 +6,7 @@ import {ProductCard} from '../../components/ProductCard';
 import {useFetchCart} from '../../hooks/useFetchCart';
 import {useGetProducts} from '../../hooks/useGetProducts';
 import {Product} from '../../models/Product';
+import {useOrder} from '../../hooks/useOrder';
 
 const styles = StyleSheet.create({
   container: {
@@ -57,6 +58,7 @@ const styles = StyleSheet.create({
 
 const HomeScreen = () => {
   const {data, isLoading} = useGetProducts();
+  const {newOrder, setOrderStatus} = useOrder();
 
   useFetchCart();
 
@@ -86,6 +88,13 @@ const HomeScreen = () => {
         ) : (
           <Text>Whoops, No data available</Text>
         )}
+
+        <Dialog
+          isVisible={newOrder}
+          onBackdropPress={() => setOrderStatus(false)}>
+          <Dialog.Title title="Congratulations" />
+          <Text>Your order has been successfully placed.</Text>
+        </Dialog>
       </View>
     </ScrollView>
   );

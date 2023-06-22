@@ -9,6 +9,7 @@ export type CartContextData = {
   isProductInCart: (productId: number) => boolean;
   increaseProductItem: (cartId: number, productId: number) => void;
   decreaseProductItem: (cartId: number, productId: number) => void;
+  removeCart: (cartId?: number) => void;
 };
 
 const initialCartContextData: CartContextData = {
@@ -17,6 +18,7 @@ const initialCartContextData: CartContextData = {
   isProductInCart: () => false,
   increaseProductItem: () => {},
   decreaseProductItem: () => {},
+  removeCart: () => {},
 };
 
 const CartContext = createContext<CartContextData>(initialCartContextData);
@@ -59,6 +61,11 @@ const CartProvider: React.FC<Props> = ({children}) => {
     }
   };
 
+  const removeCart = async (cartId?: number) => {
+    await CartService.removeCart(cartId);
+    setCart(undefined);
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -68,6 +75,7 @@ const CartProvider: React.FC<Props> = ({children}) => {
         isProductInCart,
         increaseProductItem,
         decreaseProductItem,
+        removeCart,
       }}>
       {children}
     </CartContext.Provider>
