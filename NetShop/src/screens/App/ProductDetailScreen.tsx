@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F8F9FA',
   },
   contentContainer: {
-    paddingBottom: 25,
+    paddingTop: 25,
   },
   image: {
     width: 200,
