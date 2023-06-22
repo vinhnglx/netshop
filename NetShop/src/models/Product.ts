@@ -10,7 +10,7 @@ export interface Product {
   description: string;
   price: number;
   imageURL: string;
-  quanity: number;
+  quantity: number;
   status: ProductStatus;
   bestSeller: boolean;
 }
