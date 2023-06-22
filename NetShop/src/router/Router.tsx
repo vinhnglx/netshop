@@ -10,6 +10,8 @@ import CartScreen from '../screens/App/CartScreen';
 import ProductDetailScreen from '../screens/App/ProductDetailScreen';
 import {AppCustomerStack} from './AppCustomerStack';
 import {AuthStack} from './AuthStack';
+import {AppAdminStack} from './AppAdminStack';
+import {UserRole} from '../models/User';
 
 const Stack = createNativeStackNavigator();
 
@@ -20,34 +22,44 @@ export const Router = () => {
     return <ActivityIndicator size="large" color="#5B9EE1" />;
   }
 
+  const renderCustomerStack = () => (
+    <CartProvider>
+      <OrderProvider>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Tabs"
+            component={AppCustomerStack}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="ProductDetail"
+            component={ProductDetailScreen}
+            options={{
+              title: '',
+              headerBackTitle: '',
+              headerRight: GoToCart,
+            }}
+          />
+          <Stack.Screen
+            name="CartCheckOut"
+            component={CartScreen}
+            options={{title: 'Checkout', headerBackTitle: ''}}
+          />
+        </Stack.Navigator>
+      </OrderProvider>
+    </CartProvider>
+  );
+
+  const renderAdminStack = () => <AppAdminStack />;
+
   return (
     <NavigationContainer>
       {authResponse ? (
-        <CartProvider>
-          <OrderProvider>
-            <Stack.Navigator>
-              <Stack.Screen
-                name="Tabs"
-                component={AppCustomerStack}
-                options={{headerShown: false}}
-              />
-              <Stack.Screen
-                name="ProductDetail"
-                component={ProductDetailScreen}
-                options={{
-                  title: '',
-                  headerBackTitle: '',
-                  headerRight: GoToCart,
-                }}
-              />
-              <Stack.Screen
-                name="CartCheckOut"
-                component={CartScreen}
-                options={{title: 'Checkout', headerBackTitle: ''}}
-              />
-            </Stack.Navigator>
-          </OrderProvider>
-        </CartProvider>
+        authResponse.role === UserRole.CUSTOMER ? (
+          renderCustomerStack()
+        ) : (
+          renderAdminStack()
+        )
       ) : (
         <AuthStack />
       )}

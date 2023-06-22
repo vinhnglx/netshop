@@ -4,6 +4,8 @@ import FavouriteIcon from '../components/FavouriteIcon';
 import HomeIcon from '../components/HomeIcon';
 import NotificationIcon from '../components/NotificationIcon';
 import ProfileIcon from '../components/ProfileIcon';
+import OrderListIcon from '../components/OrderListIcon';
+import ProductListIcon from '../components/ProductListIcon';
 
 export const useBottomBarIcon = () => {
   const HomeTabBarIcon = useCallback(
@@ -26,10 +28,22 @@ export const useBottomBarIcon = () => {
     [],
   );
 
+  const OrderListTabBarIcon = useCallback(
+    (props: SvgProps) => <OrderListIcon {...props} />,
+    [],
+  );
+
+  const ProductListTabBarIcon = useCallback(
+    (props: SvgProps) => <ProductListIcon {...props} />,
+    [],
+  );
+
   return {
     HomeTabBarIcon,
     FavouriteTabBarIcon,
     NotificationTabBarIcon,
     ProfileTabBarIcon,
+    OrderListTabBarIcon,
+    ProductListTabBarIcon,
   };
 };

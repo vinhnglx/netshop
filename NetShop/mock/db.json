@@ -6,7 +6,7 @@
       "username": "vinh1",
       "email": "vinh1@gmail.com",
       "password": "$2b$10$hxonsiFA5Vql7NJeVvAAw.7nme2HtH1u/P9byG9GVsF/v0tsIiRa.",
-      "role": "CUSTOMER",
+      "role": "ADMIN",
       "id": 1
     },
     {
@@ -25,7 +25,7 @@
       "description": "This is a short description for Product 1.",
       "price": 19.99,
       "imageURL": "https://picsum.photos/400",
-      "quantity": 6,
+      "quantity": 10,
       "status": "available",
       "SKU": "SKU001",
       "bestSeller": true,
@@ -149,34 +149,6 @@
       "createdAt": "2023-06-22T12:16:15.619Z",
       "deliveryDate": "2023-06-29T12:16:15.619Z",
       "id": 1
-    },
-    {
-      "userId": 1,
-      "receiver": {
-        "firstName": "Vinh",
-        "lastName": "First",
-        "email": "vinh1@gmail.com"
-      },
-      "selectedProducts": [
-        {
-          "product": {
-            "name": "Product 1",
-            "description": "This is a short description for Product 1.",
-            "price": 19.99,
-            "imageURL": "https://picsum.photos/400",
-            "quantity": 10,
-            "status": "available",
-            "SKU": "SKU001",
-            "bestSeller": true,
-            "id": 1
-          },
-          "quantity": 4
-        }
-      ],
-      "deliveryAddress": "Hamilton",
-      "createdAt": "2023-06-22T12:29:12.737Z",
-      "deliveryDate": "2023-06-29T12:29:12.737Z",
-      "id": 2
     }
   ]
 }

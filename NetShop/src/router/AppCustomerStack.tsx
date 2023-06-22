@@ -34,7 +34,7 @@ export const AppCustomerStack = () => {
         },
       }}>
       <Tab.Screen
-        name="HomeTag"
+        name="Home"
         component={HomeScreen}
         options={{
           tabBarLabel: 'Home',
