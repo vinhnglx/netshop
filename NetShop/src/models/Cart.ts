@@ -1,8 +1,13 @@
 import {Product} from './Product';
 
+export interface SelectedProduct {
+  product?: Product;
+  quantity: number;
+}
+
 export interface Cart {
   id?: number;
   userId: number;
-  products: Product[];
+  selectProducts: SelectedProduct[];
   totalPrice: number;
 }

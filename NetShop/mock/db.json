@@ -114,42 +114,23 @@
   "carts": [
     {
       "userId": 1,
-      "products": [
+      "selectProducts": [
         {
-          "name": "Product 2",
-          "description": "This is a slightly longer description for Product 2. It provides more details about the product and its features.",
-          "price": 29.99,
-          "imageURL": "https://picsum.photos/400",
-          "quantity": 5,
-          "status": "available",
-          "SKU": "SKU002",
-          "bestSeller": true,
-          "id": 2
-        },
-        {
-          "name": "Product 1",
-          "description": "This is a short description for Product 1.",
-          "price": 19.99,
-          "imageURL": "https://picsum.photos/400",
-          "quantity": 10,
-          "status": "available",
-          "SKU": "SKU001",
-          "bestSeller": true,
-          "id": 1
-        },
-        {
-          "name": "Product 4",
-          "description": "This is a very short description for Product 4.",
-          "price": 49.99,
-          "imageURL": "https://picsum.photos/400",
-          "quantity": 0,
-          "status": "sold out",
-          "SKU": "SKU004",
-          "bestSeller": true,
-          "id": 4
+          "product": {
+            "name": "Product 1",
+            "description": "This is a short description for Product 1.",
+            "price": 19.99,
+            "imageURL": "https://picsum.photos/400",
+            "quantity": 10,
+            "status": "available",
+            "SKU": "SKU001",
+            "bestSeller": true,
+            "id": 1
+          },
+          "quantity": 4
         }
       ],
-      "totalPrice": 99.97,
+      "totalPrice": 79.96000000000001,
       "id": 1
     }
   ]

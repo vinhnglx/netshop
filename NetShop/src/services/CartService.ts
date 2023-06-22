@@ -32,24 +32,79 @@ const addToCart = async (productId: number, userId: number) => {
   const existingCart = carts.find(cart => cart.userId === userId);
 
   if (!existingCart) {
-    const newCartData: Cart = {userId, products: [], totalPrice: 0};
+    const newCartData: Cart = {
+      userId,
+      selectProducts: [],
+      totalPrice: 0,
+    };
     const newCart = await initCart(newCartData);
-    newCart.products.push(product);
+    const newAddedProduct = {product, quantity: 1};
+    newCart.selectProducts.push(newAddedProduct);
     newCart.totalPrice += product.price;
 
     return await updateCart(newCart);
   } else {
-    const productsInCart = existingCart.products;
-    const productInCart = productsInCart.find(pro => pro.id === productId);
+    const productsInCart = existingCart.selectProducts;
+    const productInCart = productsInCart.find(
+      pro => pro.product?.id === productId,
+    );
 
     if (!productInCart) {
-      productsInCart.push(product);
-      existingCart.totalPrice += product.price;
+      const newAddedProduct = {product, quantity: 1};
+      productsInCart.push(newAddedProduct);
+      // existingCart.totalPrice += product.price;
     } else {
-      existingCart.totalPrice += productInCart.price;
+      productInCart.quantity += 1;
     }
+    existingCart.totalPrice += product.price;
     return await updateCart(existingCart);
   }
+};
+
+const increaseProduct = async (cartId: number, productId: number) => {
+  const response = await axiosInstance.get(`${CARTS_API_URL}/${cartId}`);
+
+  const cart = response.data as Cart;
+
+  const selectedProduct = cart.selectProducts.find(
+    pro => pro.product?.id === productId,
+  );
+
+  if (selectedProduct && selectedProduct.product) {
+    selectedProduct.quantity += 1;
+    cart.totalPrice += selectedProduct.product?.price;
+  }
+
+  return await updateCart(cart);
+};
+
+const decreaseProduct = async (cartId: number, productId: number) => {
+  const response = await axiosInstance.get(`${CARTS_API_URL}/${cartId}`);
+
+  const cart = response.data as Cart;
+
+  const selectedProduct = cart.selectProducts.find(
+    pro => pro.product?.id === productId,
+  );
+
+  if (selectedProduct && selectedProduct.product) {
+    selectedProduct.quantity -= 1;
+    cart.totalPrice -= selectedProduct.product?.price;
+
+    if (selectedProduct?.quantity === 0) {
+      const index = cart.selectProducts.findIndex(
+        pro => pro.product?.id === productId,
+      );
+
+      cart.selectProducts.splice(index, 1);
+    }
+  }
+
+  return await updateCart(cart);
+};
+
+const removeCart = async (cartId?: number) => {
+  return await axiosInstance.delete(`${CARTS_API_URL}/${cartId}`);
 };
 
 const getCart = async (userId: number) => {
@@ -60,4 +115,11 @@ const getCart = async (userId: number) => {
   return carts.find(cart => cart.userId === userId);
 };
 
-export const CartService = {initCart, addToCart, getCart};
+export const CartService = {
+  initCart,
+  addToCart,
+  getCart,
+  increaseProduct,
+  decreaseProduct,
+  removeCart,
+};

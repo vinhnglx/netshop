@@ -10,7 +10,8 @@ import {CartProvider} from './src/contexts/Cart';
 import {useAuth} from './src/hooks/useAuth';
 import {useBottomBarIcon} from './src/hooks/useBottomBarIcon';
 import {useCart} from './src/hooks/useCart';
-import {useHeaderBarIcon} from './src/hooks/useHeaderBarIcon';
+import {GoToCart, useHeaderBarIcon} from './src/hooks/useHeaderBarIcon';
+import CartScreen from './src/screens/App/CartScreen';
 import FavouriteScreen from './src/screens/App/FavouriteScreen';
 import HomeScreen from './src/screens/App/HomeScreen';
 import NotificationScreen from './src/screens/App/NotificationScreen';
@@ -32,6 +33,7 @@ export type AuthStackParamList = {
 export type AppCustomerStackParamList = {
   Home: undefined;
   ProductDetail: {id: number | undefined};
+  CartCheckOut: undefined;
 };
 
 const AuthStack = () => (
@@ -39,13 +41,6 @@ const AuthStack = () => (
     <Stack.Screen name="Welcome" component={WelcomeScreen} />
     <Stack.Screen name="SignIn" component={SignInScreen} />
     <Stack.Screen name="SignUp" component={SignUpScreen} />
-  </Stack.Navigator>
-);
-
-const CustomerHomeStack = () => (
-  <Stack.Navigator screenOptions={{headerShown: false}}>
-    <Stack.Screen name="Home" component={HomeScreen} />
-    <Stack.Screen name="ProductDetail" component={ProductDetailScreen} />
   </Stack.Navigator>
 );
 
@@ -74,7 +69,7 @@ const AppCustomerStack = () => {
       }}>
       <Tab.Screen
         name="HomeTag"
-        component={CustomerHomeStack}
+        component={HomeScreen}
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: HomeTabBarIcon,
@@ -121,7 +116,27 @@ const Router = () => {
     <NavigationContainer>
       {authResponse ? (
         <CartProvider>
-          <AppCustomerStack />
+          <Stack.Navigator>
+            <Stack.Screen
+              name="Tabs"
+              component={AppCustomerStack}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="ProductDetail"
+              component={ProductDetailScreen}
+              options={{
+                title: '',
+                headerBackTitle: '',
+                headerRight: GoToCart,
+              }}
+            />
+            <Stack.Screen
+              name="CartCheckOut"
+              component={CartScreen}
+              options={{title: 'Checkout', headerBackTitle: ''}}
+            />
+          </Stack.Navigator>
         </CartProvider>
       ) : (
         <AuthStack />
