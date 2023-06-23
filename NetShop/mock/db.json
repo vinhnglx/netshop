@@ -3,9 +3,9 @@
     {
       "firstName": "Vinh",
       "lastName": "First",
-      "username": "vinh1",
+      "username": "admin",
       "email": "vinh1@gmail.com",
-      "password": "$2b$10$hxonsiFA5Vql7NJeVvAAw.7nme2HtH1u/P9byG9GVsF/v0tsIiRa.",
+      "password": "$2b$10$zD7IayuVDWyxnhdDUYMrFe7DKiBDjHrFrXMeX5wQ/FC.kn44pKXAO",
       "role": "ADMIN",
       "id": 1
     },
@@ -45,7 +45,7 @@
       "description": "This is a slightly longer description for Product 2. It provides more details about the product and its features.",
       "price": 29.99,
       "imageURL": "https://picsum.photos/400",
-      "quantity": 1,
+      "quantity": 100,
       "status": "available",
       "SKU": "SKU002",
       "bestSeller": true,
