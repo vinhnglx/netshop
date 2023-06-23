@@ -69,6 +69,9 @@ const OrderDetailScreen = () => {
               Order
             </Text>
             <Text style={[styles.content, styles.bottom]}>ID: {order.id}</Text>
+            <Text style={[styles.content, styles.bottom]}>
+              Total price: {order.totalPrice}
+            </Text>
             <Text style={styles.content}>
               Delivery Date:{' '}
               {format(new Date(order.deliveryDate), 'MM/dd/yyyy')}
