@@ -56,6 +56,10 @@ const AuthProvider: React.FC<Props> = ({children}) => {
   const signIn = async (username: string, password: string) => {
     const response = await AuthenticationService.signIn(username, password);
 
+    if (authResponse?.error) {
+      throw Error("Can't login");
+    }
+
     setAuthResponse(response);
 
     await AsyncStorage.setItem('@AuthResponse', JSON.stringify(response));

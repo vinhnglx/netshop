@@ -3,7 +3,6 @@ import {Button, Input, Text} from '@rneui/themed';
 import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {BackIcon} from '../../components/BackIcon';
-import {GoogleIcon} from '../../components/GoogleIcon';
 import {useSafeAreaPadding} from '../../hooks/useSafeAreaPadding';
 import {AuthStackParamList} from '../../../App';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
@@ -54,6 +53,10 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     paddingVertical: 15,
     paddingHorizontal: 20,
+  },
+  error: {
+    color: 'red',
+    textAlign: 'center',
   },
 });
 
@@ -139,17 +142,15 @@ const SignInScreen = () => {
       </View>
 
       <View style={[styles.flex1, styles.spacing]}>
-        {isError && <Text>Something went wrong! Please check your input</Text>}
+        {isError && (
+          <Text style={styles.error}>
+            Something went wrong! Please check your username and password
+          </Text>
+        )}
         <Button
           buttonStyle={styles.ctaButtonRounded}
           onPress={handleSubmit(onSubmit)}>
           Sign In
-        </Button>
-        <Button
-          buttonStyle={[styles.whiteBackround, styles.ctaButtonRounded]}
-          titleStyle={styles.googleCtaButtonTitle}>
-          <GoogleIcon />
-          Sign in with Google
         </Button>
       </View>
 
