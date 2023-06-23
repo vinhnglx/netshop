@@ -17,4 +17,16 @@ const createOrder = async (order: Order) => {
   return response.data as Order;
 };
 
-export const OrderService = {createOrder};
+const fetchOrders = async () => {
+  const response = await axiosInstance.get(ORDERS_API_URL);
+
+  return response.data as Order[];
+};
+
+const fetchOrder = async (id: number) => {
+  const response = await axiosInstance.get(`${ORDERS_API_URL}/${id}`);
+
+  return response.data as Order;
+};
+
+export const OrderService = {createOrder, fetchOrders, fetchOrder};

@@ -12,6 +12,7 @@ import {AppCustomerStack} from './AppCustomerStack';
 import {AuthStack} from './AuthStack';
 import {AppAdminStack} from './AppAdminStack';
 import {UserRole} from '../models/User';
+import OrderDetailScreen from '../screens/App/OrderDetailScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -50,7 +51,23 @@ export const Router = () => {
     </CartProvider>
   );
 
-  const renderAdminStack = () => <AppAdminStack />;
+  const renderAdminStack = () => (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="AdminTabs"
+        component={AppAdminStack}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="OrderDetail"
+        component={OrderDetailScreen}
+        options={{
+          title: '',
+          headerBackTitle: '',
+        }}
+      />
+    </Stack.Navigator>
+  );
 
   return (
     <NavigationContainer>

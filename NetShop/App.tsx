@@ -16,6 +16,10 @@ export type AppCustomerStackParamList = {
   CartCheckOut: undefined;
 };
 
+export type AppAdminStackParamList = {
+  OrderDetail: {id: number | undefined};
+};
+
 const queryClient = new QueryClient();
 
 const App = () => {
