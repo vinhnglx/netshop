@@ -3,11 +3,13 @@ import {useBottomBarIcon} from '../hooks/useBottomBarIcon';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import OrderListScreen from '../screens/App/OrderListScreen';
 import ProductListScreen from '../screens/App/ProductListScreen';
+import ProfileScreen from '../screens/App/ProfileScreen';
 
 const Tab = createBottomTabNavigator();
 
 export const AppAdminStack = () => {
-  const {ProductListTabBarIcon, OrderListTabBarIcon} = useBottomBarIcon();
+  const {ProductListTabBarIcon, OrderListTabBarIcon, ProfileTabBarIcon} =
+    useBottomBarIcon();
 
   return (
     <Tab.Navigator
@@ -32,6 +34,15 @@ export const AppAdminStack = () => {
         options={{
           tabBarLabel: 'Products',
           tabBarIcon: ProductListTabBarIcon,
+        }}
+      />
+      <Tab.Screen
+        name="AdminProfile"
+        component={ProfileScreen}
+        options={{
+          tabBarLabel: 'Profile',
+          title: '',
+          tabBarIcon: ProfileTabBarIcon,
         }}
       />
     </Tab.Navigator>
