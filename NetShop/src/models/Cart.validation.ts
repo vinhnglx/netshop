@@ -28,7 +28,7 @@ export const checkoutSchema = object({
         return true;
       },
     }),
-  email: string().email(),
+  email: string().email().required(),
   deliveryAddress: string()
     .required()
     .test({

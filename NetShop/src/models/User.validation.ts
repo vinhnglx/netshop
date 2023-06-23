@@ -54,7 +54,7 @@ export const userSchema = object({
         return true;
       },
     }),
-  email: string().email(),
+  email: string().email().required(),
   password: string()
     .required()
     .test({
