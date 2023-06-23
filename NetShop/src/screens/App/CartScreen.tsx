@@ -111,6 +111,7 @@ const CartScreen = () => {
         },
         selectedProducts: cart?.selectProducts,
         deliveryAddress: data.deliveryAddress,
+        totalPrice: cart.totalPrice,
         createdAt: currentDate,
         deliveryDate,
       };

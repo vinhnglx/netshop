@@ -6,6 +6,7 @@ export interface Order {
   userId?: number;
   selectedProducts?: SelectedProduct[];
   deliveryDate: Date;
+  totalPrice: number;
   createdAt: Date;
   deliveryAddress: string;
   receiver: Pick<
