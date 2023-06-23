@@ -4,15 +4,17 @@ import React from 'react';
 import {ActivityIndicator} from 'react-native';
 import {CartProvider} from '../contexts/Cart';
 import {OrderProvider} from '../contexts/Order';
+import {ProductProvider} from '../contexts/Product';
 import {useAuth} from '../hooks/useAuth';
 import {GoToCart} from '../hooks/useHeaderBarIcon';
+import {UserRole} from '../models/User';
 import CartScreen from '../screens/App/CartScreen';
+import EditProductScreen from '../screens/App/EditProductScreen';
+import OrderDetailScreen from '../screens/App/OrderDetailScreen';
 import ProductDetailScreen from '../screens/App/ProductDetailScreen';
+import {AppAdminStack} from './AppAdminStack';
 import {AppCustomerStack} from './AppCustomerStack';
 import {AuthStack} from './AuthStack';
-import {AppAdminStack} from './AppAdminStack';
-import {UserRole} from '../models/User';
-import OrderDetailScreen from '../screens/App/OrderDetailScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -52,21 +54,31 @@ export const Router = () => {
   );
 
   const renderAdminStack = () => (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="AdminTabs"
-        component={AppAdminStack}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="OrderDetail"
-        component={OrderDetailScreen}
-        options={{
-          title: '',
-          headerBackTitle: '',
-        }}
-      />
-    </Stack.Navigator>
+    <ProductProvider>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="AdminTabs"
+          component={AppAdminStack}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="OrderDetail"
+          component={OrderDetailScreen}
+          options={{
+            title: '',
+            headerBackTitle: '',
+          }}
+        />
+        <Stack.Screen
+          name="EditProductDetail"
+          component={EditProductScreen}
+          options={{
+            title: '',
+            headerBackTitle: '',
+          }}
+        />
+      </Stack.Navigator>
+    </ProductProvider>
   );
 
   return (
@@ -74,8 +86,10 @@ export const Router = () => {
       {authResponse ? (
         authResponse.role === UserRole.CUSTOMER ? (
           renderCustomerStack()
-        ) : (
+        ) : authResponse.role === UserRole.ADMIN ? (
           renderAdminStack()
+        ) : (
+          <AuthStack />
         )
       ) : (
         <AuthStack />
