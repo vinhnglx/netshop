@@ -18,6 +18,7 @@ export type AppCustomerStackParamList = {
 
 export type AppAdminStackParamList = {
   OrderDetail: {id: number | undefined};
+  EditProductDetail: {id: number | undefined};
 };
 
 const queryClient = new QueryClient();

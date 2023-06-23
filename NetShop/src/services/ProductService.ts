@@ -41,8 +41,23 @@ const updateProductQuantity = async (products: SelectedProduct[]) => {
   await Promise.all(updatePromises);
 };
 
+const updateProduct = async (product: Partial<Product>) => {
+  if (product.id) {
+    const existingProduct = await fetchProduct(product.id);
+
+    const updatingProduct = {...existingProduct, ...product};
+
+    const response = await axiosInstance.put(
+      `${PRODUCTS_API_URL}/${product.id}`,
+      updatingProduct,
+    );
+    return response.data as Product;
+  }
+};
+
 export const ProductService = {
   fetchProducts,
   fetchProduct,
   updateProductQuantity,
+  updateProduct,
 };
