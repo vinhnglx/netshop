@@ -35,7 +35,7 @@
       "price": 19.98,
       "imageURL": "https://picsum.photos/400",
       "quantity": 5,
-      "status": "available",
+      "status": "AVAILABLE",
       "SKU": "SKU001",
       "bestSeller": true,
       "id": 1
@@ -46,7 +46,7 @@
       "price": 29.99,
       "imageURL": "https://picsum.photos/400",
       "quantity": 100,
-      "status": "available",
+      "status": "AVAILABLE",
       "SKU": "SKU002",
       "bestSeller": true,
       "id": 2
@@ -57,7 +57,7 @@
       "price": 39.99,
       "imageURL": "https://picsum.photos/400",
       "quantity": 2,
-      "status": "available",
+      "status": "AVAILABLE",
       "SKU": "SKU003",
       "bestSeller": true,
       "id": 3
@@ -68,7 +68,7 @@
       "price": 49.99,
       "imageURL": "https://picsum.photos/400",
       "quantity": 0,
-      "status": "sold out",
+      "status": "AVAILABLE",
       "SKU": "SKU004",
       "bestSeller": true,
       "id": 4
@@ -79,7 +79,7 @@
       "price": 59.99,
       "imageURL": "https://picsum.photos/400",
       "quantity": 8,
-      "status": "available",
+      "status": "AVAILABLE",
       "SKU": "SKU005",
       "bestSeller": false,
       "id": 5
@@ -90,7 +90,7 @@
       "price": 79.99,
       "imageURL": "https://picsum.photos/400",
       "quantity": 3,
-      "status": "available",
+      "status": "AVAILABLE",
       "SKU": "SKU006",
       "bestSeller": false,
       "id": 6
@@ -101,7 +101,7 @@
       "price": 99.99,
       "imageURL": "https://picsum.photos/400",
       "quantity": 6,
-      "status": "available",
+      "status": "AVAILABLE",
       "SKU": "SKU007",
       "bestSeller": false,
       "id": 7
@@ -112,7 +112,7 @@
       "price": 129.99,
       "imageURL": "https://picsum.photos/400",
       "quantity": 1,
-      "status": "available",
+      "status": "AVAILABLE",
       "SKU": "SKU008",
       "bestSeller": false,
       "id": 8
@@ -123,7 +123,7 @@
       "price": 149.99,
       "imageURL": "https://picsum.photos/400",
       "quantity": 4,
-      "status": "available",
+      "status": "AVAILABLE",
       "SKU": "SKU009",
       "bestSeller": false,
       "id": 9
@@ -146,7 +146,7 @@
             "price": 19.98,
             "imageURL": "https://picsum.photos/400",
             "quantity": 9,
-            "status": "available",
+            "status": "AVAILABLE",
             "SKU": "SKU001",
             "bestSeller": true,
             "id": 1
