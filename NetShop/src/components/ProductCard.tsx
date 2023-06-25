@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
 });
 
 export const ProductCard = (props: Product & {index: number}) => {
-  const {name, price, bestSeller, index, imageURL, id} = props;
+  const {name, price, bestSeller, index, imageURL, id, SKU} = props;
 
   const navigation =
     useNavigation<
@@ -61,6 +61,7 @@ export const ProductCard = (props: Product & {index: number}) => {
         <Text h4 h4Style={styles.productName}>
           {name}
         </Text>
+        <Text style={styles.pricing}>{SKU}</Text>
         <Text style={styles.pricing}>{price}</Text>
       </TouchableOpacity>
     </Card>

@@ -26,11 +26,20 @@
       "password": "$2b$10$0DovBNxjwOskpsWAagyacuboVSzzOhpB2Iyhc6P1ZazjzEVdb3g8a",
       "role": "CUSTOMER",
       "id": 3
+    },
+    {
+      "firstName": "Vinh",
+      "lastName": "Nguyen",
+      "username": "vinhnguyen",
+      "email": "vinh@a.com",
+      "password": "$2a$10$5rKu/YBW9kRwZXeVYaXrLu8HIxWnSRV1OU9cg7yPn9OBqZcVsTbZK",
+      "role": "CUSTOMER",
+      "id": 4
     }
   ],
   "products": [
     {
-      "name": "Product 1",
+      "name": "Product 1 - Updated",
       "description": "This is a short description for Product 1.",
       "price": 19.98,
       "imageURL": "https://picsum.photos/400",
@@ -43,7 +52,7 @@
     {
       "name": "Product 2",
       "description": "This is a slightly longer description for Product 2. It provides more details about the product and its features.",
-      "price": 29.99,
+      "price": 39.99,
       "imageURL": "https://picsum.photos/400",
       "quantity": 100,
       "status": "AVAILABLE",
@@ -67,7 +76,7 @@
       "description": "This is a very short description for Product 4.",
       "price": 49.99,
       "imageURL": "https://picsum.photos/400",
-      "quantity": 0,
+      "quantity": -3,
       "status": "AVAILABLE",
       "SKU": "SKU004",
       "bestSeller": true,
@@ -78,7 +87,7 @@
       "description": "This is a medium-length description for Product 5. It provides some key features and benefits of the product.",
       "price": 59.99,
       "imageURL": "https://picsum.photos/400",
-      "quantity": 8,
+      "quantity": 6,
       "status": "AVAILABLE",
       "SKU": "SKU005",
       "bestSeller": false,
@@ -159,6 +168,49 @@
       "createdAt": "2023-06-23T10:23:53.778Z",
       "deliveryDate": "2023-06-30T10:23:53.778Z",
       "id": 1
+    },
+    {
+      "userId": 4,
+      "receiver": {
+        "firstName": "Vinh",
+        "lastName": "Nguyen",
+        "email": "vinh@a.com"
+      },
+      "selectedProducts": [
+        {
+          "product": {
+            "name": "Product 4",
+            "description": "This is a very short description for Product 4.",
+            "price": 49.99,
+            "imageURL": "https://picsum.photos/400",
+            "quantity": 0,
+            "status": "AVAILABLE",
+            "SKU": "SKU004",
+            "bestSeller": true,
+            "id": 4
+          },
+          "quantity": 3
+        },
+        {
+          "product": {
+            "name": "Product 5",
+            "description": "This is a medium-length description for Product 5. It provides some key features and benefits of the product.",
+            "price": 59.99,
+            "imageURL": "https://picsum.photos/400",
+            "quantity": 8,
+            "status": "AVAILABLE",
+            "SKU": "SKU005",
+            "bestSeller": false,
+            "id": 5
+          },
+          "quantity": 2
+        }
+      ],
+      "deliveryAddress": "Hamilton",
+      "totalPrice": 269.95,
+      "createdAt": "2023-06-25T01:46:28.043Z",
+      "deliveryDate": "2023-07-02T01:46:28.043Z",
+      "id": 2
     }
   ]
 }

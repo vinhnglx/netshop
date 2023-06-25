@@ -5,7 +5,7 @@ export enum ProductStatus {
 
 export interface Product {
   id?: number;
-  sku: string;
+  SKU: string;
   name: string;
   description: string;
   price: number;

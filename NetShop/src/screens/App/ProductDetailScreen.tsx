@@ -102,6 +102,7 @@ const ProductDetailScreen = () => {
               <Text h3 h3Style={styles.productName}>
                 {product.name}
               </Text>
+              <Text>SKU: {product.SKU}</Text>
               <Text h4 h4Style={styles.pricing}>
                 ${product.price}
               </Text>
