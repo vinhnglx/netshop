@@ -5,8 +5,8 @@ import {ActivityIndicator, ScrollView, StyleSheet, View} from 'react-native';
 import {ProductCard} from '../../components/ProductCard';
 import {useFetchCart} from '../../hooks/useFetchCart';
 import {useGetProducts} from '../../hooks/useGetProducts';
-import {Product} from '../../models/Product';
 import {useOrder} from '../../hooks/useOrder';
+import {Product} from '../../models/Product';
 
 const styles = StyleSheet.create({
   container: {
@@ -67,7 +67,12 @@ const HomeScreen = () => {
       key={`row_${rowIndex}`}
       style={rowProducts.length === 2 ? styles.row : styles.rowWithoutCenter}>
       {rowProducts?.map((product, index) => (
-        <ProductCard key={`product_${index}`} {...product} index={index} />
+        <ProductCard
+          requiredFlex={rowProducts.length === 2}
+          key={`product_${index}`}
+          {...product}
+          index={index}
+        />
       ))}
     </View>
   );

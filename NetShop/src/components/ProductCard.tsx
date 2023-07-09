@@ -1,10 +1,10 @@
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {Card, Image, Text} from '@rneui/themed';
 import React from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
-import {Product} from '../models/Product';
-import {useNavigation} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {AppCustomerStackParamList} from '../../App';
+import {Product} from '../models/Product';
 
 const styles = StyleSheet.create({
   card: {
@@ -15,6 +15,9 @@ const styles = StyleSheet.create({
     shadowOffset: {height: 0, width: 0},
     shadowOpacity: 0,
     shadowRadius: 0,
+  },
+  flex1: {
+    flex: 1,
   },
   image: {
     width: 120,
@@ -32,8 +35,11 @@ const styles = StyleSheet.create({
   },
 });
 
-export const ProductCard = (props: Product & {index: number}) => {
-  const {name, price, bestSeller, index, imageURL, id, SKU} = props;
+export const ProductCard = (
+  props: Product & {index: number; requiredFlex: boolean},
+) => {
+  const {name, price, bestSeller, index, imageURL, id, SKU, requiredFlex} =
+    props;
 
   const navigation =
     useNavigation<
@@ -41,7 +47,9 @@ export const ProductCard = (props: Product & {index: number}) => {
     >();
 
   return (
-    <Card key={index} containerStyle={styles.card}>
+    <Card
+      key={index}
+      containerStyle={requiredFlex ? [styles.card, styles.flex1] : styles.card}>
       <TouchableOpacity
         onPress={() => navigation.navigate('ProductDetail', {id})}>
         <Card.Title>
