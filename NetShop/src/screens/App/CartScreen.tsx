@@ -1,19 +1,21 @@
 import {yupResolver} from '@hookform/resolvers/yup';
 import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {Button, Input, Text} from '@rneui/themed';
 import {addDays} from 'date-fns';
 import React, {useEffect} from 'react';
 import {Controller, useForm} from 'react-hook-form';
 import {ScrollView, StyleSheet, View} from 'react-native';
+import {AppCustomerStackParamList} from '../../../App';
 import {CartItem} from '../../components/CartItem';
 import {useCart} from '../../hooks/useCart';
 import {useGetUser} from '../../hooks/useGetUser';
+import {useOrder} from '../../hooks/useOrder';
 import {SelectedProduct} from '../../models/Cart';
 import {checkoutSchema} from '../../models/Cart.validation';
 import {Order} from '../../models/Order';
 import {OrderService} from '../../services/OrderService';
 import {ProductService} from '../../services/ProductService';
-import {useOrder} from '../../hooks/useOrder';
 
 const styles = StyleSheet.create({
   container: {
@@ -68,13 +70,16 @@ type CheckoutFormData = {
 const CartScreen = () => {
   const {cart, removeCart} = useCart();
   const {setOrderStatus} = useOrder();
-  const navigation = useNavigation();
+  const navigation =
+    useNavigation<
+      NativeStackNavigationProp<AppCustomerStackParamList, 'Home'>
+    >();
 
   const products = cart?.selectProducts;
 
   useEffect(() => {
     if (!cart) {
-      navigation.goBack();
+      navigation.navigate('Home');
     }
   }, [cart, navigation]);
 
@@ -116,11 +121,9 @@ const CartScreen = () => {
         deliveryDate,
       };
 
-      await Promise.all([
-        OrderService.createOrder(order),
-        removeCart(cart?.id),
-        ProductService.updateProductQuantity(cart?.selectProducts),
-      ]);
+      await OrderService.createOrder(order);
+      await removeCart(cart?.id);
+      await ProductService.updateProductQuantity(cart?.selectProducts);
 
       setOrderStatus(true);
     }
