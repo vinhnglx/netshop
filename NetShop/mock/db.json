@@ -35,6 +35,15 @@
       "password": "$2a$10$5rKu/YBW9kRwZXeVYaXrLu8HIxWnSRV1OU9cg7yPn9OBqZcVsTbZK",
       "role": "CUSTOMER",
       "id": 4
+    },
+    {
+      "firstName": "Vinh",
+      "lastName": "Nguyen",
+      "username": "vinh4",
+      "email": "vinh4@a.com",
+      "password": "$2b$10$eEZJXA71/tMj3eTlZl5PVeRXN7p0epY7RZoMnXm6HhUlDlXINtCPi",
+      "role": "CUSTOMER",
+      "id": 5
     }
   ],
   "products": [
@@ -54,7 +63,7 @@
       "description": "This is a slightly longer description for Product 2. It provides more details about the product and its features.",
       "price": 39.99,
       "imageURL": "https://picsum.photos/400",
-      "quantity": 100,
+      "quantity": 98,
       "status": "AVAILABLE",
       "SKU": "SKU002",
       "bestSeller": true,
@@ -76,7 +85,7 @@
       "description": "This is a very short description for Product 4.",
       "price": 49.99,
       "imageURL": "https://picsum.photos/400",
-      "quantity": -3,
+      "quantity": -4,
       "status": "AVAILABLE",
       "SKU": "SKU004",
       "bestSeller": true,
@@ -120,7 +129,7 @@
       "description": "This is an informative description for Product 8. It includes key features, usage scenarios, and customer reviews.",
       "price": 129.99,
       "imageURL": "https://picsum.photos/400",
-      "quantity": 1,
+      "quantity": 97,
       "status": "AVAILABLE",
       "SKU": "SKU008",
       "bestSeller": false,
@@ -131,7 +140,7 @@
       "description": "This is a brief description for Product 9.",
       "price": 149.99,
       "imageURL": "https://picsum.photos/400",
-      "quantity": 4,
+      "quantity": 39,
       "status": "AVAILABLE",
       "SKU": "SKU009",
       "bestSeller": false,
@@ -211,6 +220,122 @@
       "createdAt": "2023-06-25T01:46:28.043Z",
       "deliveryDate": "2023-07-02T01:46:28.043Z",
       "id": 2
+    },
+    {
+      "userId": 5,
+      "receiver": {
+        "firstName": "Vinh",
+        "lastName": "Nguyen",
+        "email": "vinh4@a.com"
+      },
+      "selectedProducts": [
+        {
+          "product": {
+            "name": "Product 2",
+            "description": "This is a slightly longer description for Product 2. It provides more details about the product and its features.",
+            "price": 39.99,
+            "imageURL": "https://picsum.photos/400",
+            "quantity": 100,
+            "status": "AVAILABLE",
+            "SKU": "SKU002",
+            "bestSeller": true,
+            "id": 2
+          },
+          "quantity": 1
+        }
+      ],
+      "deliveryAddress": "Aaa",
+      "totalPrice": 39.99,
+      "createdAt": "2023-07-09T11:20:27.077Z",
+      "deliveryDate": "2023-07-16T11:20:27.077Z",
+      "id": 3
+    },
+    {
+      "userId": 5,
+      "receiver": {
+        "firstName": "Vinh",
+        "lastName": "Nguyen",
+        "email": "vinh4@a.com"
+      },
+      "selectedProducts": [
+        {
+          "product": {
+            "name": "Product 4",
+            "description": "This is a very short description for Product 4.",
+            "price": 49.99,
+            "imageURL": "https://picsum.photos/400",
+            "quantity": -3,
+            "status": "AVAILABLE",
+            "SKU": "SKU004",
+            "bestSeller": true,
+            "id": 4
+          },
+          "quantity": 1
+        }
+      ],
+      "deliveryAddress": "1",
+      "totalPrice": 49.99,
+      "createdAt": "2023-07-09T11:21:36.480Z",
+      "deliveryDate": "2023-07-16T11:21:36.480Z",
+      "id": 4
+    },
+    {
+      "userId": 5,
+      "receiver": {
+        "firstName": "Vinh",
+        "lastName": "Nguyen",
+        "email": "vinh4@a.com"
+      },
+      "selectedProducts": [
+        {
+          "product": {
+            "name": "Product 2",
+            "description": "This is a slightly longer description for Product 2. It provides more details about the product and its features.",
+            "price": 39.99,
+            "imageURL": "https://picsum.photos/400",
+            "quantity": 99,
+            "status": "AVAILABLE",
+            "SKU": "SKU002",
+            "bestSeller": true,
+            "id": 2
+          },
+          "quantity": 1
+        }
+      ],
+      "deliveryAddress": "12",
+      "totalPrice": 39.99,
+      "createdAt": "2023-07-09T11:22:19.811Z",
+      "deliveryDate": "2023-07-16T11:22:19.811Z",
+      "id": 5
+    },
+    {
+      "userId": 5,
+      "receiver": {
+        "firstName": "Vinh",
+        "lastName": "Nguyen",
+        "email": "vinh4@a.com"
+      },
+      "selectedProducts": [
+        {
+          "product": {
+            "name": "Product 8",
+            "description": "This is an informative description for Product 8. It includes key features, usage scenarios, and customer reviews.",
+            "price": 129.99,
+            "imageURL": "https://picsum.photos/400",
+            "quantity": 100,
+            "status": "AVAILABLE",
+            "SKU": "SKU008",
+            "bestSeller": false,
+            "id": 8
+          },
+          "quantity": 3
+        }
+      ],
+      "deliveryAddress": "123",
+      "totalPrice": 389.97,
+      "createdAt": "2023-07-09T11:23:33.683Z",
+      "deliveryDate": "2023-07-16T11:23:33.683Z",
+      "id": 6
     }
   ]
 }

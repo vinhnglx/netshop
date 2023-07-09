@@ -16,7 +16,7 @@ export interface AuthResponse {
   error?: string;
   token?: string;
   role?: UserRole;
-  userId: number;
+  userId?: number;
 }
 
 const MOCK_JWT =
@@ -45,7 +45,7 @@ const signUp = async (user: User) => {
       userId: userResponse.data.id,
     } as AuthResponse;
   } catch (error: any) {
-    return {error: 'Something went wrong'} as AuthResponse;
+    return {error: 'Something went wrong'};
   }
 };
 

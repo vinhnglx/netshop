@@ -1,11 +1,12 @@
 import React, {createContext, useEffect, useState} from 'react';
 
 import AsyncStorage from '@react-native-community/async-storage';
+import {has} from 'lodash';
+import {User} from '../models/User';
 import {
   AuthResponse,
   AuthenticationService,
 } from '../services/AuthenticationService';
-import {User} from '../models/User';
 
 export type AuthContextData = {
   loading: boolean;
@@ -56,7 +57,7 @@ const AuthProvider: React.FC<Props> = ({children}) => {
   const signIn = async (username: string, password: string) => {
     const response = await AuthenticationService.signIn(username, password);
 
-    if (authResponse?.error) {
+    if (has(authResponse, 'error')) {
       throw Error("Can't login");
     }
 
@@ -79,4 +80,4 @@ const AuthProvider: React.FC<Props> = ({children}) => {
   );
 };
 
-export {AuthProvider, AuthContext};
+export {AuthContext, AuthProvider};
