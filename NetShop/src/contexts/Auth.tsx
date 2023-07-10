@@ -57,7 +57,7 @@ const AuthProvider: React.FC<Props> = ({children}) => {
   const signIn = async (username: string, password: string) => {
     const response = await AuthenticationService.signIn(username, password);
 
-    if (has(authResponse, 'error')) {
+    if (has(response, 'error')) {
       throw Error("Can't login");
     }
 
